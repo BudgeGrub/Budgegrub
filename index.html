@@ -17,33 +17,70 @@
       <img class="logo" src="./Assets/BudgetGrubsLogo.png" alt="Logo" style="height: 150px; width: 150px;">
     </a>
   </nav>
-  <div>
-    <h1>Please fill out the form to generate your Budget Rating</h1>
-  </div>
 
-  <main class="container">
-    <form>
-      <div class="input-group my-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="">First name</span>
-        </div>
-        <input type="text" class="form-control">
-      </div>
-      <div class="input-group my-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="">Last name</span>
-        </div>
-        <input type="text" class="form-control">
-      </div>
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text">Monthly Income $</span>
-        </div>
-        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-      </div>
-    </form>
+  <h1>Please fill out the form to generate your Budget Rating</h1>
 
 
+  <main class="container my-5">
+    <div class="row">
+      <div class="col-lg-12">
+        <form id="form1">
+          <!-- Input for first name -->
+          <div class="input-group my-3">
+            <div class="input-group-prepend">
+              <label for="firstName" class="input-group-text">First name</label>
+            </div>
+            <input id="firstName" type="text" class="form-control">
+          </div>
+
+          <!-- Input for last name -->
+          <div class="input-group my-3">
+            <div class="input-group-prepend">
+              <label for="lastName" class="input-group-text">Last name</label>
+            </div>
+            <input id="lastName" type="text" class="form-control">
+          </div>
+
+          <!-- Input for Monthly income -->
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label for="monthlyIncome" class="input-group-text">Monthly Income $</label>
+            </div>
+            <input id="monthlyIncome" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+
+      <div class="col-lg-12 hidden">
+        <form id="form2">
+          <!-- Input for first name -->
+          <div class="input-group my-3">
+            <div class="input-group-prepend">
+              <label for="firstName" class="input-group-text">First name</label>
+            </div>
+            <input id="firstName" type="text" class="form-control">
+          </div>
+
+          <!-- Input for last name -->
+          <div class="input-group my-3">
+            <div class="input-group-prepend">
+              <label for="lastName" class="input-group-text">Last name</label>
+            </div>
+            <input id="lastName" type="text" class="form-control">
+          </div>
+
+          <!-- Input for Monthly income -->
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label for="monthlyIncome" class="input-group-text">Monthly Income $</label>
+            </div>
+            <input id="monthlyIncome" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
   </main>
 
   <div class="mapouter">
