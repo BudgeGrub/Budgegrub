@@ -1,0 +1,90 @@
+body{
+    font-family: ;
+    background-image: url(./Assets/food.jpg);
+    /* margin: 2rem; */
+}
+
+
+.main {
+    float: left;
+    margin-left: -42rem;
+    margin-top: -16rem;
+    background-color:lightblue;
+    padding: 1rem;
+    border-radius:1rem ;
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0 0 15px 8px;
+}
+
+.second {
+    height: 450px;
+    width: 1000px;
+    margin-left: -42rem;
+    margin-top: 8rem; 
+    background-color:transparent;
+    padding: 1rem;
+    border-radius:1rem ;
+    /* border: 2px solid black; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     flex-direction: column;
+    /* box-shadow: 0 0 15px 8px; */
+}
+
+.mapouter {
+    margin-top: 3rem;
+    float:right;
+    box-shadow: 0 0 15px 8px;
+    margin-right: 20rem;
+}
+
+.logo {
+    border-radius: 50%;
+}
+
+h1 {
+    margin-left: 7.5rem;
+    font-weight: bold;
+    color: rgb(88, 248, 187);
+    text-shadow: 3px 3px black;
+}
+
+.carousel-inner img {
+    border-radius: 1rem;
+    margin-right: 10rem;
+    width: 60%;
+    height: 30%;
+  }
+
+  .b {
+      font-family: monospace;
+      font-weight: bold;
+    margin-top: 0;
+    width: 100%;
+    border: 1px solid blue;
+    background-color: lightblue;
+    padding: 10px;
+  }
+  .btn {
+      margin-top: 0;
+      
+  }
+
+  .container {
+      width: 20rem;
+      height: 30rem;
+      margin-left: 8rem;
+      margin-top: -30rem;
+  }
+  
+.top-left {
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    color: white;
+  }
