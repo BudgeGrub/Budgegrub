@@ -7,16 +7,22 @@ body{
     /* margin: 2rem; */
 }
 
+.hidden {
+    display: none !important;
+}
 
-main {
+.col-lg-12 {
+    display: flex;
+    justify-content: center;
+}
+
+form {
+    width: 75%;
     background-color:lightblue;
     border-radius:1rem ;
     border: 2px solid black;
-    /* display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column; */
     box-shadow: 0 0 15px 8px;
+    padding: 10px 20px;
 }
 
 .second {
@@ -97,3 +103,10 @@ footer {
     bottom: 0;
     height: 50px;
 }
+
+@media only screen and (max-width: 780px) {
+    body {
+        background-repeat: initial;
+        background-size: contain;
+    }
+} 
