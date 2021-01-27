@@ -1,22 +1,21 @@
 body{
-    font-family: ;
+    font-family: Arial, Helvetica, sans-serif;
     background-image: url(./Assets/food.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 1500px;
+    /*background-size: cover;
     /* margin: 2rem; */
 }
 
 
-.main {
-    float: left;
-    margin-left: -42rem;
-    margin-top: -16rem;
+main {
     background-color:lightblue;
-    padding: 1rem;
     border-radius:1rem ;
     border: 2px solid black;
-    display: flex;
+    /* display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    flex-direction: column; */
     box-shadow: 0 0 15px 8px;
 }
 
@@ -38,10 +37,19 @@ body{
 
 .mapouter {
     margin-top: 3rem;
-    float:right;
     box-shadow: 0 0 15px 8px;
-    margin-right: 20rem;
+    margin-right: 10rem;
+    text-align: right;
+    height: 250px;
+    width: 150px;
 }
+
+.gmap_canvas {
+    overflow: hidden;
+    background: none !important;
+    height: 250px;
+    width: 150px;
+  }
 
 .logo {
     border-radius: 50%;
@@ -59,32 +67,33 @@ h1 {
     margin-right: 10rem;
     width: 60%;
     height: 30%;
-  }
+}
 
-  .b {
-      font-family: monospace;
-      font-weight: bold;
+.b {
+    font-family: monospace;
+    font-weight: bold;
     margin-top: 0;
     width: 100%;
     border: 1px solid blue;
     background-color: lightblue;
     padding: 10px;
-  }
-  .btn {
-      margin-top: 0;
+}
+.btn {
+    margin-top: 0;
       
-  }
-
-  .container {
-      width: 20rem;
-      height: 30rem;
-      margin-left: 8rem;
-      margin-top: -30rem;
-  }
+}
   
 .top-left {
     position: absolute;
     top: 8px;
     left: 16px;
     color: white;
-  }
+}
+
+footer {
+    background: teal;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+    height: 50px;
+}
