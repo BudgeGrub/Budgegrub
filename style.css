@@ -84,6 +84,20 @@ form {
     margin-top: 0;
 }
 
+footer {
+    background: teal;
+    margin-bottom: 0;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+footer h3 {
+    margin-bottom: 0;
+}
+
 @media only screen and (max-width: 850px) {
     body {
         background-repeat: initial;
