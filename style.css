@@ -117,4 +117,8 @@ footer h3 {
         background-repeat: initial;
         background-size: 100% 700px;
     }
+    .form-group {
+        padding-right: 15px !important;
+        padding-left: 15px !important;
+    }
 }
