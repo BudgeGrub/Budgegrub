@@ -18,13 +18,14 @@
     </a>
   </nav>
 
-  <h1>Please fill out the form to generate your Budget Rating</h1>
+  <h1 class="text-center">Please fill out the form to generate your Budget Rating</h1>
 
 
   <main class="container my-5">
     <div class="row">
       <div class="col-lg-12">
-        <form id="form1">
+        <form id="form1" class="my-4">
+          <h2 class="text-center">Monthly Income and Location</h2>
           <!-- Input for first name -->
           <div class="input-group my-3">
             <div class="input-group-prepend">
@@ -41,19 +42,32 @@
             <input id="lastName" type="text" class="form-control">
           </div>
 
-          <!-- Input for Monthly income -->
+          <!-- Input for monthly income -->
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <label for="monthlyIncome" class="input-group-text">Monthly Income $</label>
             </div>
-            <input id="monthlyIncome" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+            <input id="monthlyIncome" type="text" class="form-control">
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+
+          <!-- Input for location -->
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label for="userLocation" class="input-group-text">Location</label>
+            </div>
+            <input id="userLocation" type="text" class="form-control" placeholder="Enter your location">
+            <p class="footnote ml-2"><em>Enter full address or city name (1234 Example Rd, Tallahassee, FL 32304 or just
+                Tallahasee, FL 32304)</em></p>
+          </div>
+
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
         </form>
       </div>
 
-      <div class="col-lg-12 hidden">
-        <form id="form2">
+      <div class="col-lg-12">
+        <form id="form2" class="my-4">
           <!-- Input for first name -->
           <div class="input-group my-3">
             <div class="input-group-prepend">
@@ -77,7 +91,9 @@
             </div>
             <input id="monthlyIncome" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
         </form>
       </div>
     </div>
@@ -94,7 +110,7 @@
   </div>
 
 
-  <div class="second">
+  <div class="second container">
     <div class="income-display">
       <div class="b">00000000</div>
     </div>
@@ -148,10 +164,9 @@
 
 
 
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="script.js"></script>
 </body>
 
