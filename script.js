@@ -12,7 +12,7 @@ let locations;
 
 $("#form-1-submit").click(function (event) {
     event.preventDefault();
-    event.stopPropagation();
+
     if (monthlyIncome.val() && userLocation.val()) {
         $("#col-1").addClass("hidden");
         $("#col-2").removeClass("hidden");
@@ -25,7 +25,6 @@ $("#form-1-submit").click(function (event) {
 
 $("#form-2-submit").click(function (event) {
     event.preventDefault();
-    event.stopPropagation();
 
     if ($("#expense").val() && $("#cost").val()) {
         let expenseName = $("#expense").val();
@@ -35,7 +34,6 @@ $("#form-2-submit").click(function (event) {
         let listItem = $("<li>");
         listItem.html(`${expenseName}: ${expenseCost}`);
         expenseList.append(listItem);
-        console.log(listItem);
 
         //Clear inputs
         $("#expense").val('');
