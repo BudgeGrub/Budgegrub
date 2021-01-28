@@ -16,127 +16,168 @@
       <img class="logo" src="./Assets/BudgetGrubsLogo.png" alt="Logo" style="height: 150px; width: 150px;">
     </a>
   </nav>
-  <div>
-    <h1>Please fill out the form to generate your Budget Rating</h1>
+
+  <div id="h1">
+    <h1 class="text-center">Please fill out the form to generate your Budget Rating</h1>
   </div>
 
-  <div class="mapouter">
-    <div class="gmap_canvas">
-      <iframe width="150" height="250" id="gmap_canvas"
-        src="https://maps.google.com/maps?q=11530%20griffing%20blvd&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"
-        scrolling="no" marginheight="0" marginwidth="0"></iframe>
-      <a href="https://www.whatismyip-address.com"></a><br>
-      <a href="https://www.embedgooglemap.net"></a>
+  <main class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <form class="form-group px-5">
+
+          <h2 class="text-center mt-3">Enter monthly income and location</h2>
+          <div class="input-group pt-3 mb-2">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="firstName">First name</label>
+            </div>
+            <input id="firstName" type="text" class="form-control">
+          </div>
+
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="lastName">Last name</label>
+            </div>
+            <input id="lastName" type="text" class="form-control">
+          </div>
+
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <label for="monthlyIncome" class="input-group-text">Annual Income $</label>
+            </div>
+            <input id="monthlyIncome" type="number" class="form-control">
+          </div>
+
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="userLocation">Location</label>
+            </div>
+            <input id="userLocation" type="text" class="form-control" placeholder="Enter location">
+            <p class="footnote ml-2"><em>Enter full address or city/state (1234 Example Rd, Tallahasee, FL
+                32304 or
+                Tallahasee, FL 32304</em>
+            </p>
+          </div>
+
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary mb-3">Submit</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="col-lg-12 hidden">
+        <form class="form-group px-5">
+          <h2 class="text-center mt-3">Expenses</h2>
+
+          <div class="input-group pt-3 mb-2">
+            <div class="input-group-prepend">
+              <label for="expense" class="input-group-text">Name of Expense</label>
+            </div>
+            <input id="expense" type="text" class="form-control">
+          </div>
+
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <label class="input-group-text">Cost of Expense $</label>
+            </div>
+            <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
+          </div>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label for="catagories" class="input-group-text">Type of Expense</label>
+            </div>
+
+            <select name="catagories" id="catagories" class="custom-select custom-select-lg">
+              <option value="rent">Mortgage / Rent</option>
+              <option value="utilities">Utilities</option>
+              <option value="car-loan">Car Payments</option>
+              <option value="car-insurance">Car Insurance</option>
+              <option value="insurance">Other Insurance</option>
+              <option value="groceries">Groceries</option>
+              <option value="dining">Dining expense</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary mb-3">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <div class="second container">
+
+    <div class="income-display">
+      <div id="budget" class="b">Current budget</div>
+
+      <ul id="listOfExpenses" class="list-group">
+        <!-- Use JS to add Li's -->
+      </ul>
+    </div>
+
+    <div class="btn">
+      <button type="button" class="btn btn-lg btn-primary" disabled>Submit</button>
     </div>
 
 
-    <main>
-      <form>
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="">First and last name</span>
-          </div>
-          <input type="text" class="form-control">
-          <input type="text" class="form-control">
-        </div>
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Annual Income$</span>
-            <span class="input-group-text">0.00</span>
-          </div>
-          <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-        </div>
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Mortgage/Rent$</span>
-            <span class="input-group-text">0.00</span>
-          </div>
-          <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-        </div>
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Car/Insurance$</span>
-            <span class="input-group-text">0.00</span>
-          </div>
-          <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-        </div>
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Health Insurance$</span>
-            <span class="input-group-text">0.00</span>
-          </div>
-          <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-        </div>
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Miscellaneous$</span>
-            <span class="input-group-text">0.00</span>
-          </div>
-          <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-        </div>
-      </form>
-    </main>
+    <div id="demo" class="carousel slide" data-ride="carousel">
 
+      <!-- Indicators -->
+      <ul class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+        <li data-target="#demo" data-slide-to="1"></li>
+        <li data-target="#demo" data-slide-to="2"></li>
+      </ul>
 
-
-    <div class="second">
-      <div class="income-display">
-        <div class="b">00000000</div>
+      <!-- The slideshow -->
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="./Assets/ram.jpg" alt="Los Angeles">
+        </div>
+        <div class="carousel-item">
+          <img src="Assets/res3.jpeg" alt="Chicago">
+        </div>
+        <div class="carousel-item">
+          <img src="Assets/junkFood.jpg" alt="New York">
+        </div>
       </div>
 
-      <div class="btn">
-        <button type="button" class="btn btn-lg btn-primary" disabled>Submit</button>
-      </div>
-
-
-
-
-
-      <div id="demo" class="carousel slide" data-ride="carousel">
-
-        <!-- Indicators -->
-        <ul class="carousel-indicators">
-          <li data-target="#demo" data-slide-to="0" class="active"></li>
-          <li data-target="#demo" data-slide-to="1"></li>
-          <li data-target="#demo" data-slide-to="2"></li>
-        </ul>
-
-        <!-- The slideshow -->
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="./Assets/ram.jpg" alt="Los Angeles">
-          </div>
-          <div class="carousel-item">
-            <img src="Assets/res3.jpeg" alt="Chicago">
-          </div>
-          <div class="carousel-item">
-            <img src="Assets/junkFood.jpg" alt="New York">
-          </div>
-        </div>
-
-        <!-- Left and right controls -->
-        <a class="carousel-control-prev" href="#demo" data-slide="prev">
-          <span class="carousel-control-prev-icon"></span>
-        </a>
-        <a class="carousel-control-next" href="#demo" data-slide="next">
-          <span class="carousel-control-next-icon"></span>
-        </a>
-
-      </div>
+      <!-- Left and right controls -->
+      <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </a>
+      <a class="carousel-control-next" href="#demo" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </a>
 
     </div>
 
+    <div>
+      <div class="mapouter">
+        <div class="gmap_canvas mb-5">
+          <iframe width="150" height="250" id="gmap_canvas"
+            src="https://maps.google.com/maps?q=11530%20griffing%20blvd&t=&z=13&ie=UTF8&iwloc=&output=embed"
+            frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+          <a href="https://www.whatismyip-address.com"></a><br>
+          <a href="https://www.embedgooglemap.net"></a>
+        </div>
+      </div>
+    </div>
 
+  </div>
 
+  <footer>
+    <h3 class="text-center"> By: Group</h3>
+  </footer>
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 
 </html>
