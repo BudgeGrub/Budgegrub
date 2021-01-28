@@ -19,7 +19,8 @@ $("#form-1-submit").click(function (event) {
 
         budget = monthlyIncome.val();
         locations = userLocation.val();
-        budgetTarget.html(budget);
+        //Sets the budget html to be equal to their monthly budget fixed to 2 decimal places.
+        budgetTarget.html(`$${(parseInt(budget)).toFixed(2)}`);
     }
 });
 
