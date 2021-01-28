@@ -32,6 +32,10 @@ form {
     color: #777;
 }
 
+select {
+    width: 80%;
+}
+
 .hidden {
     display: none;
 }
