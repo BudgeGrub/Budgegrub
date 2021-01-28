@@ -5,21 +5,26 @@ body{
 }
 
 
-.main {
+main {
     float: left;
     margin-left: -42rem;
     margin-top: -16rem;
-    background-color:lightblue;
     padding: 1rem;
-    border-radius:1rem ;
     border: 2px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    box-shadow: 0 0 15px 8px;
+    
 }
 
+form {
+    box-shadow: 0 0 15px 8px;
+    background-color:lightblue;
+    border-radius:1rem ;
+
+
+}
 .second {
     height: 450px;
     width: 1000px;
@@ -41,7 +46,18 @@ body{
     float:right;
     box-shadow: 0 0 15px 8px;
     margin-right: 20rem;
+        position: relative;
+        text-align: right;
+        height: 250px;
+        width: 150px;
+      
 }
+.gmap_canvas {
+    overflow: hidden;
+    background: none !important;
+    height: 250px;
+    width: 150px;
+  }
 
 .logo {
     border-radius: 50%;
@@ -73,18 +89,4 @@ h1 {
   .btn {
       margin-top: 0;
       
-  }
-
-  .container {
-      width: 20rem;
-      height: 30rem;
-      margin-left: 8rem;
-      margin-top: -30rem;
-  }
-  
-.top-left {
-    position: absolute;
-    top: 8px;
-    left: 16px;
-    color: white;
   }
