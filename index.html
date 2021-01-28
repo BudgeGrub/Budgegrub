@@ -29,7 +29,7 @@
     <!-- Single row for containing both forms -->
     <div class="row">
       <!-- Column for first form for entering monthly budget and location -->
-      <div class="col-lg-12">
+      <div id="col-1" class="col-lg-12">
         <!-- Form -->
         <form class="form-group px-5">
           <h2 class="text-center mt-3">Enter monthly income and location</h2>
@@ -50,16 +50,16 @@
           <!-- Input for Monthly income -->
           <div class="input-group mb-2">
             <div class="input-group-prepend">
-              <label for="monthlyIncome" class="input-group-text">Annual Income $</label>
+              <label for="monthlyIncome" class="input-group-text">Monthly Income $</label>
             </div>
-            <input id="monthlyIncome" type="number" class="form-control">
+            <input id="monthlyIncome" type="number" class="form-control" required>
           </div>
           <!-- Input for location -->
           <div class="input-group mb-2">
             <div class="input-group-prepend">
               <label class="input-group-text" for="userLocation">Location</label>
             </div>
-            <input id="userLocation" type="text" class="form-control" placeholder="Enter location">
+            <input id="userLocation" type="text" class="form-control" placeholder="Enter location" required>
             <p class="footnote ml-2"><em>Enter full address or city/state (1234 Example Rd, Tallahasee, FL
                 32304 or
                 Tallahasee, FL 32304</em>
@@ -67,13 +67,13 @@
           </div>
 
           <div class="text-center">
-            <button type="submit" class="btn btn-primary mb-3">Submit</button>
+            <button id="form-1-submit" type="button" class="btn btn-primary mb-3">Submit</button>
           </div>
         </form>
       </div>
 
       <!-- column for second form that takes expenses. Starts off hidden from user until first form submitted-->
-      <div class="col-lg-12 hidden">
+      <div id="col-2" class="col-lg-12 hidden">
         <form class="form-group px-5">
           <h2 class="text-center mt-3">Expenses</h2>
           <!-- Input for name of expense -->
