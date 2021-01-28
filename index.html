@@ -46,7 +46,7 @@
             <div class="input-group-prepend">
               <label for="monthlyIncome" class="input-group-text">Annual Income $</label>
             </div>
-            <input id="monthlyIncome" type="text" class="form-control">
+            <input id="monthlyIncome" type="number" class="form-control">
           </div>
 
           <div class="input-group mb-2">
@@ -66,24 +66,39 @@
         </form>
       </div>
 
-      <div class="col-lg-12">
+      <div class="col-lg-12 hidden">
         <form class="form-group px-5">
           <h2 class="text-center mt-3">Expenses</h2>
 
-          <div class="input-group pt-3">
+          <div class="input-group pt-3 mb-2">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="">First and last name</span>
+              <label for="expense" class="input-group-text">Name of Expense</label>
             </div>
-            <input type="text" class="form-control">
-            <input type="text" class="form-control">
+            <input id="expense" type="text" class="form-control">
+          </div>
+
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <label class="input-group-text">Cost of Expense $</label>
+            </div>
+            <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
           </div>
 
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text">Annual Income$</span>
-              <span class="input-group-text">0.00</span>
+              <label for="catagories" class="input-group-text">Type of Expense</label>
             </div>
-            <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+
+            <select name="catagories" id="catagories" class="custom-select custom-select-lg">
+              <option value="rent">Mortgage / Rent</option>
+              <option value="utilities">Utilities</option>
+              <option value="car-loan">Car Payments</option>
+              <option value="car-insurance">Car Insurance</option>
+              <option value="insurance">Other Insurance</option>
+              <option value="groceries">Groceries</option>
+              <option value="dining">Dining expense</option>
+              <option value="other">Other</option>
+            </select>
           </div>
 
           <div class="text-center">
@@ -95,8 +110,13 @@
   </main>
 
   <div class="second container">
+
     <div class="income-display">
-      <div class="b">00000000</div>
+      <div id="budget" class="b">Current budget</div>
+
+      <ul id="listOfExpenses" class="list-group">
+        <!-- Use JS to add Li's -->
+      </ul>
     </div>
 
     <div class="btn">
