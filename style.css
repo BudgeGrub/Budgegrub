@@ -2,7 +2,7 @@ body{
     font-family: Arial, Helvetica, sans-serif;
     background-image: url(./Assets/food.jpg);
     background-repeat: no-repeat;
-    background-size: 100% 1500px;
+    background-size: 100% 1900px;
     /*background-size: cover;
     /* margin: 2rem; */
 }
@@ -25,11 +25,13 @@ form {
     padding: 10px 20px;
 }
 
+.footnote {
+    color: #777;
+}
+
 .second {
     height: 450px;
     width: 1000px;
-    margin-left: -42rem;
-    margin-top: 8rem; 
     background-color:transparent;
     padding: 1rem;
     border-radius:1rem ;
@@ -37,7 +39,7 @@ form {
     display: flex;
     justify-content: center;
     align-items: center;
-     flex-direction: column;
+    flex-direction: column;
     /* box-shadow: 0 0 15px 8px; */
 }
 
@@ -107,6 +109,6 @@ footer {
 @media only screen and (max-width: 780px) {
     body {
         background-repeat: initial;
-        background-size: contain;
+        background-size: 100% 600px;
     }
 } 
