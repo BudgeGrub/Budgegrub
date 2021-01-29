@@ -9,6 +9,7 @@ let budgetTarget = $("#budget");
 
 let budget;
 let locations;
+let restaurants = {};
 
 $("#form-1-submit").click(function (event) {
     event.preventDefault();
@@ -21,14 +22,7 @@ $("#form-1-submit").click(function (event) {
         locations = userLocation.val();
         //Sets the budget html to be equal to their monthly budget fixed to 2 decimal places.
         budgetTarget.html(`$${(parseInt(budget)).toFixed(2)}`);
-
-        //Sheree work here
-        // create button
-        //Add html to button
-        //Append button to page
-        //give click function to button
-        //When clicked remove hidden class from col-1
-        //Give hidden class col-2
+        $("#requestRest").prop("disabled", false);
     }
 });
 
@@ -73,4 +67,23 @@ $("#form-2-submit").click(function (event) {
         console.log(budget);
         budgetTarget.html(`$${(parseFloat(budget)).toFixed(2)}`)
     }
+});
+
+$("#requestRest").on("click", function () {
+    var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search"
+
+    $.ajax({
+        url: myurl,
+        headers: {
+            'Authorization': 'Bearer L-II2r_Slet4z_EkoQ8O0wf3dRrb_tgQE2q81nmfYx5qT-TnC_Lox30a4ztshh-4S2e9bf7imSQ-dxWdjFXKW9vYQvqV6gLTYb1mCSP9gj4282zbST2TlLbJtJsNYHYx',
+        },
+        method: 'GET',
+        data: { term: 'restaurant', location: locations, limit: '5', price: '1' },
+    }).then(function (response) {
+        console.log(response);
+        for (let i = 0; i < response.businesses.length; i++) {
+            restaurants[response.businesses[i].name] = response.businesses[i].coordinates;
+        }
+        console.log(restaurants);
+    });
 });
