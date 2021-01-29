@@ -156,3 +156,9 @@ footer h3 {
       display: flex;
       justify-content: center;
   }
+
+  #listOfExpenses {
+      font-weight: bold;
+      font-family: monospace;
+      background-color: pink;
+  }
