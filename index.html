@@ -69,7 +69,11 @@
             <div class="input-group-prepend">
               <label class="input-group-text" for="userLocation">Location</label>
             </div>
+<<<<<<< HEAD
             <input id="userLocation" type="text" class="form-control" placeholder="Enter location" required>
+=======
+            <input id="userLocation" type="text" class="form-control" placeholder="Enter location" required />
+>>>>>>> aaa9714d5275df96ad6a1ca25ff65a240fcdc1ed
             <p class="footnote ml-2"><em>Enter full address or city/state (1234 Example Rd, Tallahasee, FL
                 32304 or
                 Tallahasee, FL 32304</em>
@@ -77,7 +81,7 @@
           </div>
 
           <div class="text-center">
-            <button id="form-1-submit" type="button" class="btn btn-primary mb-3">Submit</button>
+            <button id="form-1-submit" type="submit" class="btn btn-primary mb-3">Submit</button>
           </div>
         </form>
       </div>
@@ -106,7 +110,7 @@
               <label for="catagories" class="input-group-text">Type of Expense</label>
             </div>
 
-            <select name="catagories" id="catagories" class="custom-select custom-select-lg">
+            <select name="categories" id="categories" class="custom-select custom-select-lg">
               <option value="rent">Mortgage / Rent</option>
               <option value="utilities">Utilities</option>
               <option value="car-loan">Car Payments</option>
@@ -119,7 +123,7 @@
           </div>
 
           <div class="text-center">
-            <button id="form-2-submit" type="button" class="btn btn-primary mb-3">Submit</button>
+            <button id="form-2-submit" type="submit" class="btn btn-primary mb-3">Submit</button>
           </div>
         </form>
       </div>
@@ -132,14 +136,14 @@
       <div id="budget" class="b">Current budget</div>
 
       <!-- Unordered list of expenses added from form -->
-      <ul id="listOfExpenses" class="list-group text-light">
+      <ul id="listOfExpenses" class="list-group text-light mt-3">
         <!-- Use JS to add Li's -->
       </ul>
 
     </div>
     <!-- This button will display resturaunts from yelp api input based on budget. Needs to be finished -->
     <div class="btn">
-      <button type="button" class="btn btn-lg btn-primary" disabled>Submit</button>
+      <button id="requestRest" type="button" class="btn btn-lg btn-primary" disabled>Submit</button>
     </div>
 
     <!-- Carousel for image of restaurants displayed when above button is clicked (currently displays anyways) -->
