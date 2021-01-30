@@ -32,6 +32,7 @@ $("#form-1-submit").click(function (event) {
         $("#requestRest").prop("disabled", false);
         var edit = $("#editIncome")
         edit.removeClass("hidden")
+
         edit.on("click", function (event) {
             event.preventDefault();
             $("#col-1").removeClass("hidden")
@@ -57,31 +58,25 @@ $("#form-2-submit").click(function (event) {
             newName += expenseName[i];
         }
 
-        console.log(newName);
-
         let div = $("<div>");
         let span = $("<span>");
         let listItem = $("<li>");
         let button = $("<span>");
 
         listItem.html(`${newName}: ${expenseCost}`);
-        listItem.addClass("list-group-item text-dark float-left");    
+        listItem.addClass("list-group-item text-dark float-left");
         button.html("<i class='fa fa-trash'></i>");
         button.addClass("ml-2 float-right");
-        
+
         // code for onclick of trash can removal 
-      // var listId = listItem.attr("id")
-      //  var buttonId = button.attr("id");
-       button.on("click", function() {
-           // alert("this works");
-          //  console.log(clickbutton)
-         $(this).parent().remove();
-        var reAdd = $(this).parent().html().split(":")[1]
-         var reAdd2 = reAdd.split("<")[0]
-         budget += parseFloat(reAdd2)
-         budgetTarget.html(`$${(parseFloat(budget)).toFixed(2)}`)
-         console.log(reAdd2)
-   }) 
+        button.on("click", function () {
+            $(this).parent().remove();
+            var reAdd = $(this).parent().html().split(":")[1]
+            var reAdd2 = reAdd.split("<")[0]
+            budget += parseFloat(reAdd2)
+            budgetTarget.html(`$${(parseFloat(budget)).toFixed(2)}`)
+            console.log(reAdd2)
+        })
 
         listItem.append(button);
         span.append(listItem);
@@ -97,8 +92,6 @@ $("#form-2-submit").click(function (event) {
         budgetTarget.html(`$${(parseFloat(budget)).toFixed(2)}`)
     }
 });
-       
-//});
 
 anime.timeline({ loop: true })
     .add({
