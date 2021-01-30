@@ -58,9 +58,23 @@ $("#form-2-submit").click(function (event) {
         let button = $("<span>");
 
         listItem.html(`${newName}: ${expenseCost}`);
-        listItem.addClass("list-group-item text-dark float-left");
+        listItem.addClass("list-group-item text-dark float-left");    
         button.html("<i class='fa fa-trash'></i>");
         button.addClass("ml-2 float-right");
+        
+        // code for onclick of trash can removal 
+      // var listId = listItem.attr("id")
+      //  var buttonId = button.attr("id");
+       button.on("click", function() {
+           // alert("this works");
+          //  console.log(clickbutton)
+         $(this).parent().remove();
+        var reAdd = $(this).parent().html().split(":")[1]
+         var reAdd2 = reAdd.split("<")[0]
+         budget += parseFloat(reAdd2)
+         budgetTarget.html(`$${(parseFloat(budget)).toFixed(2)}`)
+         console.log(reAdd2)
+   }) 
 
         listItem.append(button);
         span.append(listItem);
@@ -76,12 +90,15 @@ $("#form-2-submit").click(function (event) {
         budgetTarget.html(`$${(parseFloat(budget)).toFixed(2)}`)
     }
 });
+       
+//});
 
 $("#requestRest").on("click", function () {
     var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search"
 
     $.ajax({
         url: myurl,
+
         headers: {
             'Authorization': 'Bearer L-II2r_Slet4z_EkoQ8O0wf3dRrb_tgQE2q81nmfYx5qT-TnC_Lox30a4ztshh-4S2e9bf7imSQ-dxWdjFXKW9vYQvqV6gLTYb1mCSP9gj4282zbST2TlLbJtJsNYHYx',
         },
