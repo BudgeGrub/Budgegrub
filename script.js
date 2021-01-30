@@ -69,7 +69,6 @@ $("#form-2-submit").click(function (event) {
     }
 });
 
-<<<<<<< HEAD
 
 
 anime.timeline({ loop: true })
@@ -112,7 +111,7 @@ anime.timeline({ loop: true })
         easing: "easeOutExpo",
         delay: 3000
     });
-=======
+
 $("#requestRest").on("click", function () {
     var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search"
 
@@ -131,4 +130,3 @@ $("#requestRest").on("click", function () {
         console.log(restaurants);
     });
 });
->>>>>>> aaa9714d5275df96ad6a1ca25ff65a240fcdc1ed

@@ -102,8 +102,7 @@ footer {
     align-items: center;
     justify-content: center;
     color: white;
-
-    position: absolute;
+    position: relative;
     bottom: 0;
     width: 100%;
 }
@@ -177,10 +176,4 @@ li {
   #any {
       display: flex;
       justify-content: center;
-  }
-
-  #listOfExpenses {
-      font-weight: bold;
-      font-family: monospace;
-      background-color: pink;
   }
