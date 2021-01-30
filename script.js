@@ -36,8 +36,7 @@ $("#form-1-submit").click(function (event) {
             event.preventDefault();
             $("#col-1").removeClass("hidden")
             $("#col-2").addClass("hidden")
-        }
-        )
+        });
     }
 
 });
@@ -105,19 +104,27 @@ $("#requestRest").on("click", function () {
             let div = $("<div>");
             let img = $("<img>");
             let listItem = $("<li>");
+            let h3 = $("<h3>");
+            let header = $("<div>");
+
+            header.addClass("carouselHeader mb-0")
+            h3.html(restData.name);
+            h3.addClass("text-center text-light mb-0");
 
             listItem.attr("data-target", "#demo")
             listItem.attr("data-slide-to", i);
 
             img.attr("src", restData.image_url);
             img.addClass("d-block");
-            div.addClass("carousel-item");
+            div.addClass("carousel-item mt-0");
             if (i === 0) {
                 div.addClass("active");
                 listItem.addClass("active");
             }
 
             $(".carousel-indicators").append(listItem);
+            header.append(h3);
+            div.append(header);
             div.append(img);
             $("#carouselImages").append(div);
         }
