@@ -116,6 +116,7 @@ footer {
 
 footer h3 {
     margin-bottom: 0;
+    color: rgb(88, 248, 187);;
 }
 
 .float-left {
@@ -142,3 +143,44 @@ li {
         padding-left: 15px !important;
     }
 }
+
+
+.ml5 {
+    position: relative;
+    font-weight: 300;
+    font-size: 4.5em;
+    color: rgb(88, 248, 187);
+  }
+  
+  .ml5 .text-wrapper {
+    position: relative;
+    display: inline-block;
+    padding-top: 0.1em;
+    padding-right: 0.05em;
+    padding-bottom: 0.15em;
+    line-height: 1em;
+  }
+  
+  .ml5 .line {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 3px;
+    width: 100%;
+    background-color: #402d2d;
+    transform-origin: 0.5 0;
+  }
+  
+  
+  .ml5 .letters {
+    text-align: center;
+    display: inline-block;
+    opacity: 0;
+  }
+  
+  #any {
+      display: flex;
+      justify-content: center;
+  }
