@@ -55,6 +55,12 @@ select {
     width: 150px;
   }
 
+ .list-group {
+    list-style-type: square;
+    font-size: 20px;
+    color: blue;
+ } 
+
 .gmap_canvas {
     overflow: hidden;
     background: none !important;
@@ -102,6 +108,7 @@ footer {
     align-items: center;
     justify-content: center;
     color: white;
+
     position: relative;
     bottom: 0;
     width: 100%;

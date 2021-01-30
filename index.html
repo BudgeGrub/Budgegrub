@@ -19,6 +19,9 @@
       <!-- Round image logo for top left -->
       <img class="logo" src="./Assets/BudgetGrubsLogo.png" alt="Logo" style="height: 150px; width: 150px;">
     </a>
+    <div class="text-center btn">  
+      <button id="editIncome" type="button2" class="btn btn-primary mb-2 hidden" >Edit Income</button>
+    </div> 
   </nav>
   <div id="any" class="container">
     <h1 class="ml5">
@@ -31,15 +34,19 @@
     </h1>
   </div>
 
+
   <div id="h1">
     <h1 class="text-center">Please fill out the form to generate your Budget Rating</h1>
   </div>
-
+<!-- This button will display resturaunts from yelp api input based on budget. Needs to be finished -->
+ 
   <main class="container">
+    
     <!-- Single row for containing both forms -->
     <div class="row">
       <!-- Column for first form for entering monthly budget and location -->
       <div id="col-1" class="col-lg-12">
+        
         <!-- Form -->
         <form class="form-group px-5">
           <h2 class="text-center mt-3">Enter monthly income and location</h2>
