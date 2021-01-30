@@ -16,19 +16,19 @@ $("#form-1-submit").click(function (event) {
     if (monthlyIncome.val() && userLocation.val()) {
         $("#col-1").addClass("hidden");
         $("#col-2").removeClass("hidden");
-
         budget = monthlyIncome.val();
         locations = userLocation.val();
         //Sets the budget html to be equal to their monthly budget fixed to 2 decimal places.
         budgetTarget.html(`$${(parseInt(budget)).toFixed(2)}`);
-
-        //Sheree work here
-        // create button
-        //Add html to button
-        //Append button to page
-        //give click function to button
-        //When clicked remove hidden class from col-1
-        //Give hidden class col-2
+        var edit = $("#editIncome");
+        edit.removeClass("hidden");
+        edit.on("click",function(event){
+            event.preventDefault();
+         console.log("hello")   
+        $("#col-2").addClass("hidden") 
+        $("#col-1").removeClass("hidden")   
+        })
+         
     }
 });
 
