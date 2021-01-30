@@ -99,6 +99,27 @@ $("#requestRest").on("click", function () {
         console.log(response);
         for (let i = 0; i < response.businesses.length; i++) {
             restaurants[response.businesses[i].name] = response.businesses[i].coordinates;
+            let restData = response.businesses[i];
+            console.log(restData);
+
+            let div = $("<div>");
+            let img = $("<img>");
+            let listItem = $("<li>");
+
+            listItem.attr("data-target", "#demo")
+            listItem.attr("data-slide-to", i);
+
+            img.attr("src", restData.image_url);
+            img.addClass("d-block");
+            div.addClass("carousel-item");
+            if (i === 0) {
+                div.addClass("active");
+                listItem.addClass("active");
+            }
+
+            $(".carousel-indicators").append(listItem);
+            div.append(img);
+            $("#carouselImages").append(div);
         }
         console.log(restaurants);
     });
