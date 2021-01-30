@@ -10,6 +10,14 @@ let budgetTarget = $("#budget");
 let budget;
 let locations;
 let restaurants = {};
+//Fixs footer no matter what screen size is.
+let interval = setInterval(function () {
+    if ($(document).height() > $(window).height()) {
+        $('footer').css('position', 'relative');
+    } else {
+        $('footer').css('position', 'absolute');
+    }
+}, 100);
 
 $("#form-1-submit").click(function (event) {
     event.preventDefault();
