@@ -22,7 +22,16 @@ $("#form-1-submit").click(function (event) {
         //Sets the budget html to be equal to their monthly budget fixed to 2 decimal places.
         budgetTarget.html(`$${(parseInt(budget)).toFixed(2)}`);
         $("#requestRest").prop("disabled", false);
+        var edit = $("#editIncome")
+        edit.removeClass("hidden")
+        edit.on("click",function (event) {
+            event.preventDefault();
+            $("#col-1").removeClass("hidden")
+            $("#col-2").addClass("hidden")
+        }
+        )
     }
+
 });
 
 $("#form-2-submit").click(function (event) {
