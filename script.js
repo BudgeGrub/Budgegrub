@@ -10,6 +10,8 @@ let budgetTarget = $("#budget");
 let budget;
 let locations;
 let restaurants = {};
+let expenses = 0;
+
 //Fixs footer no matter what screen size is.
 let interval = setInterval(function () {
     if ($(document).height() > $(window).height()) {
@@ -25,10 +27,9 @@ $("#form-1-submit").click(function (event) {
     if (monthlyIncome.val() && userLocation.val()) {
         $("#col-1").addClass("hidden");
         $("#col-2").removeClass("hidden");
-        budget = monthlyIncome.val();
+        budget = parseFloat(monthlyIncome.val());
         locations = userLocation.val();
         //Sets the budget html to be equal to their monthly budget fixed to 2 decimal places.
-        budgetTarget.html(`$${(parseInt(budget)).toFixed(2)}`);
         $("#requestRest").prop("disabled", false);
         var edit = $("#editIncome")
         edit.removeClass("hidden")
@@ -37,7 +38,10 @@ $("#form-1-submit").click(function (event) {
             event.preventDefault();
             $("#col-1").removeClass("hidden")
             $("#col-2").addClass("hidden")
+            $(this).addClass("hidden");
         });
+
+        calcBudget();
     }
 
 });
@@ -58,11 +62,13 @@ $("#form-2-submit").click(function (event) {
             newName += expenseName[i];
         }
 
+        //Create html elements for list
         let div = $("<div>");
         let span = $("<span>");
         let listItem = $("<li>");
         let button = $("<span>");
 
+        //Create html content for list of expenses and button to remove expense
         listItem.html(`${newName}: ${expenseCost}`);
         listItem.addClass("list-group-item text-dark float-left");
         button.html("<i class='fa fa-trash'></i>");
@@ -72,10 +78,10 @@ $("#form-2-submit").click(function (event) {
         button.on("click", function () {
             $(this).parent().remove();
             var reAdd = $(this).parent().html().split(":")[1]
-            var reAdd2 = reAdd.split("<")[0]
-            budget += parseFloat(reAdd2)
-            budgetTarget.html(`$${(parseFloat(budget)).toFixed(2)}`)
-            console.log(reAdd2)
+            var reAdd2 = parseFloat(reAdd.split("<")[0]);
+            //Subrtacts removed expense from costs and recalcs budget
+            expenses -= reAdd2;
+            addBudget(reAdd2);
         })
 
         listItem.append(button);
@@ -86,10 +92,9 @@ $("#form-2-submit").click(function (event) {
         //Clear inputs
         $("#expense").val('');
         $("#cost").val('');
-        //Subtracts expense cost from budget and reupdates html
-        budget -= parseFloat(expenseCost);
-        console.log(budget);
-        budgetTarget.html(`$${(parseFloat(budget)).toFixed(2)}`)
+        //Adds expense to total expense cost
+        expenses += parseFloat(expenseCost);
+        subBudget(parseFloat(expenseCost));
     }
 });
 
@@ -182,3 +187,20 @@ $("#requestRest").on("click", function () {
         console.log(restaurants);
     });
 });
+
+//For Calculating budget when a new income has been set
+function calcBudget() {
+    budget -= parseFloat(expenses);
+    budgetTarget.html(`$${(parseFloat(budget)).toFixed(2)}`)
+}
+
+//Calc budget when new expense is added
+function subBudget(expense) {
+    budget -= parseFloat(expense);
+    budgetTarget.html(`$${(parseFloat(budget)).toFixed(2)}`)
+}
+//Calc budget when expense is removed
+function addBudget(removedExpense) {
+    budget += parseFloat(removedExpense);
+    budgetTarget.html(`$${(parseFloat(budget)).toFixed(2)}`)
+}
