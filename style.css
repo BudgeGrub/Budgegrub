@@ -9,6 +9,47 @@ body{
     border-radius: 50%;
 }
 
+.ml5 {
+    position: relative;
+    font-weight: 300;
+    font-size: 60px;
+    color: rgb(88, 248, 187);
+}
+  
+.ml5 .text-wrapper {
+    position: relative;
+    display: inline-block;
+    padding-top: 0.1em;
+    padding-right: 0.05em;
+    padding-bottom: 0.15em;
+    line-height: 1em;
+}
+  
+.ml5 .line {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 3px;
+    width: 100%;
+    background-color: #402d2d;
+    transform-origin: 0.5 0;
+}
+  
+  
+.ml5 .letters {
+    text-align: center;
+    display: inline-block;
+    opacity: 0;
+}
+  
+#any {
+    display: flex;
+    justify-content: center;
+}
+
+
 h1 {
     font-weight: bold;
     color: rgb(88, 248, 187);
@@ -68,6 +109,19 @@ select {
     width: 150px;
 }
 
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+li {
+    width: 250px;
+    background:rgb(179, 224, 255) !important;
+}
+
 .second {
     width: 100%;
     padding: 1rem;
@@ -119,64 +173,16 @@ footer {
     width: 100%;
 }
 
+footer a {
+    text-decoration: none;
+    cursor: pointer;
+    color: white;
+}
+
 footer h3 {
     margin-bottom: 0;
     color: rgb(88, 248, 187);;
 }
-
-.float-left {
-    float: left;
-}
-
-.float-right {
-    float: right;
-}
-
-li {
-    width: 250px;
-    background:rgb(179, 224, 255) !important;
-}
-
-.ml5 {
-    position: relative;
-    font-weight: 300;
-    font-size: 4.5em;
-    color: rgb(88, 248, 187);
-}
-  
-.ml5 .text-wrapper {
-    position: relative;
-    display: inline-block;
-    padding-top: 0.1em;
-    padding-right: 0.05em;
-    padding-bottom: 0.15em;
-    line-height: 1em;
-}
-  
-.ml5 .line {
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    height: 3px;
-    width: 100%;
-    background-color: #402d2d;
-    transform-origin: 0.5 0;
-}
-  
-  
-.ml5 .letters {
-    text-align: center;
-    display: inline-block;
-    opacity: 0;
-}
-  
-#any {
-    display: flex;
-    justify-content: center;
-}
-
 
 @media only screen and (max-width: 850px) {
     body {
@@ -186,5 +192,17 @@ li {
     .form-group {
         padding-right: 15px !important;
         padding-left: 15px !important;
+    }
+}
+
+@media only screen and (max-width: 850px) {
+    .ml5 {
+        font-size: 40px;
+    }
+}
+
+@media only screen and (max-width: 420px) {
+    .ml5 {
+        font-size: 30px;
     }
 }
