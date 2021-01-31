@@ -199,10 +199,18 @@ footer h3 {
     .ml5 {
         font-size: 40px;
     }
+
+    h1 {
+        font-size: 35px;
+    }
 }
 
 @media only screen and (max-width: 420px) {
     .ml5 {
         font-size: 30px;
+    }
+
+    form {
+        font-size: 0.8em;
     }
 }
