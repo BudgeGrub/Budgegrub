@@ -119,7 +119,38 @@ select {
 
 li {
     width: 250px;
-    background:rgb(179, 224, 255) !important;
+}
+/* Classes to color li's based on type of expense */
+.rent {
+    background: red;
+}
+
+.utilities {
+    background: orange;
+}
+
+.groceries {
+    background: purple;
+}
+
+.dining {
+    background: pink;
+}
+
+.car-loan {
+    background: teal;
+}
+
+.car-insurance {
+    background: green;
+}
+
+.insurance {
+    background: lightsalmon
+}
+
+.other {
+    background: #444;
 }
 
 .second {

@@ -69,12 +69,12 @@ $("#form-2-submit").click(function (event) {
         let button = $("<span>");
 
         //Create html content for list of expenses and button to remove expense
-        listItem.html(`${newName}: ${expenseCost}`);
-        listItem.addClass("list-group-item text-dark float-left");
+        listItem.html(`${newName}: ${parseFloat(expenseCost).toFixed(2)}`);
+        listItem.addClass(`list-group-item text-light float-left ${categories.val()}`);
         button.html("<i class='fa fa-trash'></i>");
         button.addClass("ml-2 float-right");
 
-        // code for onclick of trash can removal 
+        // Click event on trash can to remove expense.
         button.on("click", function () {
             $(this).parent().remove();
             var reAdd = $(this).parent().html().split(":")[1]
