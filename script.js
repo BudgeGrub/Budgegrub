@@ -14,6 +14,7 @@ let expenses = 0;
 
 //Create object for saving expenses to local Storage
 let expenseObj = {};
+let capitalExpenseName = "";
 
 //Fixs footer no matter what screen size is.
 let interval = setInterval(function () {
@@ -58,60 +59,18 @@ $("#form-2-submit").click(function (event) {
     event.preventDefault();
     //Makes sure they input an expense name and cost
     if ($("#expense").val() && $("#cost").val()) {
-        let expenseName = $("#expense").val();
-        let expenseCost = $("#cost").val();
-        let expenseList = $("#listOfExpenses");
-        //Capitalizes the first letter of the name
-        let firstLetter = expenseName[0].toUpperCase();
-        //Creates new string with capital letter.
-        let newName = "";
-        newName += firstLetter;
-        for (let i = 1; i < expenseName.length; i++) {
-            newName += expenseName[i];
-        }
+        //Creates expense but passes in null to indicate this is a new expense instead of coming from localStorage.
+        createExpense("");
+        //Add expense to expenseObj for localStorage
+        expenseObj[capitalExpenseName] = [categories.val(), parseFloat($("#cost").val()).toFixed(2)];
 
-        //Create html elements for list
-        let div = $("<div>");
-        let span = $("<span>");
-        let listItem = $("<li>");
-        let button = $("<span>");
-
-        //Create html content for list of expenses and button to remove expense
-        listItem.html(`${newName}: ${parseFloat(expenseCost).toFixed(2)}`);
-        listItem.addClass(`list-group-item text-light float-left ${categories.val()}`);
-        //Add expense to obj for localStorage with an array of its category and cost.
-        expenseObj[newName] = [categories.val(), parseFloat(expenseCost).toFixed(2)]
-
-        button.html("<i class='fa fa-trash'></i>");
-        button.addClass("ml-2 float-right");
-
-        // Click event on trash can to remove expense.
-        button.on("click", function () {
-            $(this).parent().remove();
-            var reAdd = $(this).parent().html().split(":")[1]
-            var reAdd2 = parseFloat(reAdd.split("<")[0]);
-            //Subrtacts removed expense from costs and recalcs budget
-            expenses -= reAdd2;
-            addBudget(reAdd2);
-
-            //remove from localStorage obj
-            delete expenseObj[$(this).parent().html().split(":")[0]];
-            setLocalStorage("expense", expenseObj);
-        })
-
-        listItem.append(button);
-        span.append(listItem);
-        div.append(span);
-        expenseList.append(div);
+        //Save to localStorage
+        setLocalStorage("expense", expenseObj);
 
         //Clear inputs
         $("#expense").val('');
         $("#cost").val('');
-        //Adds expense to total expense cost
-        expenses += parseFloat(expenseCost);
-        subBudget(parseFloat(expenseCost));
-        //Save to localStorage
-        setLocalStorage("expense", expenseObj);
+        capitalExpenseName = "";
     }
 });
 //Animation for the sites header
@@ -226,15 +185,97 @@ function addBudget(removedExpense) {
     setLocalStorage("budget", budget);
 }
 
+//Create expense list item;
+function createExpense(passedExpense) {
+    //Create html elements for list
+    let div = $("<div>");
+    let span = $("<span>");
+    let listItem = $("<li>");
+    let button = $("<span>");
+
+    let expenseList = $("#listOfExpenses");
+    let expenseCost;
+
+    //checks if new expense or from localStorage. If from localStorage, use expense name and cost.
+    if (passedExpense) {
+        let expenseName = passedExpense;
+        expenseCost = parseFloat(expenseObj[passedExpense][1]);
+        capitalExpenseName = expenseName;
+        listItem.html(`${capitalExpenseName}: ${parseFloat(expenseCost).toFixed(2)}`);
+        listItem.addClass(`list-group-item text-light float-left ${expenseObj[passedExpense][0]}`);
+    } else if (!passedExpense) {
+        let expenseName = $("#expense").val();
+        expenseCost = $("#cost").val();
+        //Capitalizes the first letter of the name
+        let firstLetter = expenseName[0].toUpperCase();
+        //Creates new string with capital letter.
+        capitalExpenseName += firstLetter;
+        for (let i = 1; i < expenseName.length; i++) {
+            capitalExpenseName += expenseName[i];
+        }
+        //Add expense to obj for localStorage with an array of its category and cost.
+
+        listItem.html(`${capitalExpenseName}: ${parseFloat(expenseCost).toFixed(2)}`);
+        listItem.addClass(`list-group-item text-light float-left ${categories.val()}`);
+
+        //Adds expense to total expense cost if new and subs from budget.
+        expenses += parseFloat(expenseCost);
+        subBudget(parseFloat(expenseCost));
+    }
+
+    button.html("<i class='fa fa-trash'></i>");
+    button.addClass("ml-2 float-right");
+
+    // Click event on trash can to remove expense.
+    button.on("click", function () {
+        $(this).parent().remove();
+        var reAdd = $(this).parent().html().split(":")[1]
+        var reAdd2 = parseFloat(reAdd.split("<")[0]);
+        //Subrtacts removed expense from costs and recalcs budget
+        expenses -= reAdd2;
+        addBudget(reAdd2);
+
+        //remove from localStorage obj
+        delete expenseObj[$(this).parent().html().split(":")[0]];
+        setLocalStorage("expense", expenseObj);
+    })
+
+    listItem.append(button);
+    span.append(listItem);
+    div.append(span);
+    expenseList.append(div);
+}
+
 function setLocalStorage(k, obj) {
     localStorage.setItem(k, JSON.stringify(obj));
 }
 
 function getLocalStorage(k) {
     if (k === "budget") {
-        budget = localStorage.getItem(k);
-    }
-    if (k === "expense") {
+        budget = parseFloat(localStorage.getItem(k));
+    } else if (k === "expense") {
         expenseObj = JSON.parse(localStorage.getItem(k));
+    } else if (k === "location") {
+        locations = localStorage.getItem(k);
+    }
+}
+
+//Check and retreive from localStorage.
+getLocalStorage("budget");
+getLocalStorage("expense");
+getLocalStorage("location");
+
+//If a budget and location was retreived from localStorage, update them and go to expense form.
+if (budget && locations) {
+    budgetTarget.html(`$${(parseFloat(budget)).toFixed(2)}`);
+    $("#col-1").addClass("hidden");
+    $("#col-2").removeClass("hidden");
+    $("#editIncome").removeClass("hidden");
+}
+//If expenses already made, Add them to list and calc budget.
+if (expenseObj) {
+    console.log(expenseObj)
+    for (expense in expenseObj) {
+        createExpense(expense);
     }
 }
