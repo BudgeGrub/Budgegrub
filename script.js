@@ -40,7 +40,7 @@ $("#form-1-submit").click(function (event) {
             $("#col-2").addClass("hidden")
             $(this).addClass("hidden");
         });
-
+        //Calculates budget (initially will be same as their input if no expenses already made)
         calcBudget();
     }
 
@@ -151,7 +151,6 @@ $("#requestRest").on("click", function () {
         method: 'GET',
         data: { term: 'restaurant', location: locations, limit: '5', price: '1' },
     }).then(function (response) {
-        console.log(response);
         for (let i = 0; i < response.businesses.length; i++) {
             restaurants[response.businesses[i].name] = response.businesses[i].coordinates;
             let restData = response.businesses[i];
@@ -184,7 +183,6 @@ $("#requestRest").on("click", function () {
             div.append(img);
             $("#carouselImages").append(div);
         }
-        console.log(restaurants);
     });
 });
 
@@ -192,15 +190,29 @@ $("#requestRest").on("click", function () {
 function calcBudget() {
     budget -= parseFloat(expenses);
     budgetTarget.html(`$${(parseFloat(budget)).toFixed(2)}`)
+    //Save to local storage
+    setLocalStorage("budget", budget);
 }
 
 //Calc budget when new expense is added
 function subBudget(expense) {
     budget -= parseFloat(expense);
     budgetTarget.html(`$${(parseFloat(budget)).toFixed(2)}`)
+    //Update localStorage budget
+    setLocalStorage("budget", budget);
 }
 //Calc budget when expense is removed
 function addBudget(removedExpense) {
     budget += parseFloat(removedExpense);
     budgetTarget.html(`$${(parseFloat(budget)).toFixed(2)}`)
+    //Update localStorage budget
+    setLocalStorage("budget", budget);
+}
+
+function setLocalStorage(k, obj) {
+    localStorage.setItem(k, JSON.stringify(obj));
+}
+
+function getLocalStorage(k, obj) {
+
 }
