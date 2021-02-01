@@ -20,10 +20,10 @@ let interval = setInterval(function () {
         $('footer').css('position', 'absolute');
     }
 }, 100);
-
+//Click event for submission of monthly expense form
 $("#form-1-submit").click(function (event) {
     event.preventDefault();
-
+    //Makes sure they input a monthly income and location
     if (monthlyIncome.val() && userLocation.val()) {
         $("#col-1").addClass("hidden");
         $("#col-2").removeClass("hidden");
@@ -45,15 +45,15 @@ $("#form-1-submit").click(function (event) {
     }
 
 });
-
+//On click event for expense form submission
 $("#form-2-submit").click(function (event) {
     event.preventDefault();
-
+    //Makes sure they input an expense name and cost
     if ($("#expense").val() && $("#cost").val()) {
         let expenseName = $("#expense").val();
         let expenseCost = $("#cost").val();
         let expenseList = $("#listOfExpenses");
-
+        //Capitalizes the first letter of the name
         let firstLetter = expenseName[0].toUpperCase();
         //Creates new string with capital letter.
         let newName = "";
@@ -97,7 +97,7 @@ $("#form-2-submit").click(function (event) {
         subBudget(parseFloat(expenseCost));
     }
 });
-
+//Animation for the sites header
 anime.timeline({ loop: true })
     .add({
         targets: '.ml5 .line',
@@ -138,7 +138,7 @@ anime.timeline({ loop: true })
         easing: "easeOutExpo",
         delay: 3000
     });
-
+//Requewst restaurants from yelp api
 $("#requestRest").on("click", function () {
     var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search"
 
