@@ -12,6 +12,9 @@ let locations;
 let restaurants = {};
 let expenses = 0;
 
+//Create object for saving expenses to local Storage
+let expenseObj = {};
+
 //Fixs footer no matter what screen size is.
 let interval = setInterval(function () {
     if ($(document).height() > $(window).height()) {
@@ -20,6 +23,7 @@ let interval = setInterval(function () {
         $('footer').css('position', 'absolute');
     }
 }, 100);
+
 //Click event for submission of monthly expense form
 $("#form-1-submit").click(function (event) {
     event.preventDefault();
@@ -28,6 +32,7 @@ $("#form-1-submit").click(function (event) {
         $("#col-1").addClass("hidden");
         $("#col-2").removeClass("hidden");
         budget = parseFloat(monthlyIncome.val());
+        //Saves location for use in Yelp Api part of script.
         locations = userLocation.val();
         //Sets the budget html to be equal to their monthly budget fixed to 2 decimal places.
         $("#requestRest").prop("disabled", false);
@@ -40,8 +45,11 @@ $("#form-1-submit").click(function (event) {
             $("#col-2").addClass("hidden")
             $(this).addClass("hidden");
         });
-        //Calculates budget (initially will be same as their input if no expenses already made)
+        //Calculates budget (initially will be same as their input if no expenses already made).
+        //calcBudget also saves to localStorage
         calcBudget();
+        //Save location to localStorage
+        setLocalStorage("location", locations);
     }
 
 });
@@ -71,6 +79,9 @@ $("#form-2-submit").click(function (event) {
         //Create html content for list of expenses and button to remove expense
         listItem.html(`${newName}: ${parseFloat(expenseCost).toFixed(2)}`);
         listItem.addClass(`list-group-item text-light float-left ${categories.val()}`);
+        //Add expense to obj for localStorage with an array of its category and cost.
+        expenseObj[newName] = [categories.val(), parseFloat(expenseCost).toFixed(2)]
+
         button.html("<i class='fa fa-trash'></i>");
         button.addClass("ml-2 float-right");
 
@@ -82,6 +93,10 @@ $("#form-2-submit").click(function (event) {
             //Subrtacts removed expense from costs and recalcs budget
             expenses -= reAdd2;
             addBudget(reAdd2);
+
+            //remove from localStorage obj
+            delete expenseObj[$(this).parent().html().split(":")[0]];
+            setLocalStorage("expense", expenseObj);
         })
 
         listItem.append(button);
@@ -95,6 +110,8 @@ $("#form-2-submit").click(function (event) {
         //Adds expense to total expense cost
         expenses += parseFloat(expenseCost);
         subBudget(parseFloat(expenseCost));
+        //Save to localStorage
+        setLocalStorage("expense", expenseObj);
     }
 });
 //Animation for the sites header
@@ -213,6 +230,11 @@ function setLocalStorage(k, obj) {
     localStorage.setItem(k, JSON.stringify(obj));
 }
 
-function getLocalStorage(k, obj) {
-
+function getLocalStorage(k) {
+    if (k === "budget") {
+        budget = localStorage.getItem(k);
+    }
+    if (k === "expense") {
+        expenseObj = JSON.parse(localStorage.getItem(k));
+    }
 }
