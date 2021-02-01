@@ -118,7 +118,7 @@ select {
 }
 
 li {
-    width: 250px;
+    width: 300px;
 }
 /* Classes to color li's based on type of expense */
 .rent {
