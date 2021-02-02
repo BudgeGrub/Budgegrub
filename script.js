@@ -66,6 +66,8 @@ $("#form-2-submit").click(function (event) {
         //Clear inputs
         $("#expense").val('');
         $("#cost").val('');
+
+        //Make sure to reset current name for next expense name
         capitalExpenseName = "";
     }
 });
@@ -208,6 +210,10 @@ function createExpense(passedExpense) {
         expenseCost = $("#cost").val();
         //Capitalizes the first letter of the name
         let firstLetter = expenseName[0].toUpperCase();
+
+        //Make sure to reset current name for next expense name (if loaded some previously from local storage, it doesnt get reset from the form click event. Need to do it here too.)
+        capitalExpenseName = "";
+
         //Creates new string with capital letter.
         capitalExpenseName += firstLetter;
         for (let i = 1; i < expenseName.length; i++) {
