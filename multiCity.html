@@ -11,7 +11,8 @@
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
-        height: 100%;
+        height: 50%;
+        width:50%;
       }
 
       /* Optional: Makes the sample page fill the window. */
@@ -44,7 +45,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
         });
         // Create a <script> tag and set the USGS URL as the source.
         const script = document.createElement("script");
-        // THE GeoJSON SHOULD BE STORES AT
+        // THE GeoJSON SHOULD BE STORED AT
         // "assets/yelp_results_GeoJSONP.js"
         script.src =
           "assets/yelp_response_GeoJSONP.js";
