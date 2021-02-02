@@ -118,7 +118,9 @@ $("#requestRest").on("click", function () {
         url: myurl,
 
         headers: {
-            'Authorization': 'Bearer L-II2r_Slet4z_EkoQ8O0wf3dRrb_tgQE2q81nmfYx5qT-TnC_Lox30a4ztshh-4S2e9bf7imSQ-dxWdjFXKW9vYQvqV6gLTYb1mCSP9gj4282zbST2TlLbJtJsNYHYx',
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${atob('RTQzbnlDWU9uYTJrVDFMRTJ0a3VEcTJpMHl5SWFqWFlRdGh1ZDQ2RkhrcUlrZEFZM0RJZHpWQVpnbW4zZzlvczNWeUROaVVZRXBoTTd4MEdUcmthYmxJT2xHUS1vZ3N1NlZtRml4azNad2pQSlBZajBwdDV1R0JoTmFVWllIWXg=')}`,
         },
         method: 'GET',
         data: { term: 'restaurant', location: locations, limit: '5', price: '1' },
@@ -253,11 +255,12 @@ function getLocalStorage(k) {
         budget = parseFloat(localStorage.getItem(k));
     } else if (k === "expense") {
         expenseObj = JSON.parse(localStorage.getItem(k));
+        //If an expenseObj already in localStorage, set ours equal to it and creat the html elements.
         if (expenseObj) {
-            console.log(expenseObj)
             for (storedExpense in expenseObj) {
                 createExpense(storedExpense);
             }
+            //If it doesnt exist, set it back to an empty obj.
         } else {
             expenseObj = {};
         }
@@ -286,7 +289,3 @@ if (budget && locations) {
     $("#editIncome").removeClass("hidden");
     $("#requestRest").prop("disabled", false);
 }
-//If expenses already made, Add them to list and calc budget.
-
-
-console.log(expenses)
