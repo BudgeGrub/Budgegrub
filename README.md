@@ -9,4 +9,7 @@ Link: https://budgegrub.github.io/Budgegrub/
 
 Image to be added
 
+![Alt text](./Assets/AppScreenShot.png "BudgetGrubs")
+
+
 Credits: Names
