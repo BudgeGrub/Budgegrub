@@ -6,6 +6,7 @@ You will be provided an expense form that will allow you to add an expense to a 
 At any time after you provide an income and location, you can request a list of a few restaurants near that location. 
 
 Link: https://budgegrub.github.io/Budgegrub/
+gitHub: https://github.com/BudgeGrub/Budgegrub
 
 Image to be added
 
