@@ -253,6 +253,14 @@ function getLocalStorage(k) {
         budget = parseFloat(localStorage.getItem(k));
     } else if (k === "expense") {
         expenseObj = JSON.parse(localStorage.getItem(k));
+        if (expenseObj) {
+            console.log(expenseObj)
+            for (storedExpense in expenseObj) {
+                createExpense(storedExpense);
+            }
+        } else {
+            expenseObj = {};
+        }
     } else if (k === "location") {
         locations = localStorage.getItem(k);
     }
@@ -279,13 +287,6 @@ if (budget && locations) {
     $("#requestRest").prop("disabled", false);
 }
 //If expenses already made, Add them to list and calc budget.
-if (expenseObj) {
-    console.log(expenseObj)
-    for (storedExpense in expenseObj) {
-        createExpense(storedExpense);
-    }
-    //Recalc budget with retreived expenses.
-    calcBudget();
-}
+
 
 console.log(expenses)
