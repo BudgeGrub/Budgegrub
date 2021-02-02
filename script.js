@@ -1,11 +1,12 @@
-let firstName = $('#firstName');
-let lastName = $('#lastName');
-let monthlyIncome = $('#monthlyIncome');
-let userLocation = $('#userLocation');
-let expense = $('#expense');
-let cost = $('#cost');
-let categories = $('#categories');
-let budgetTarget = $("#budget");
+const firstName = $('#firstName');
+const lastName = $('#lastName');
+const monthlyIncome = $('#monthlyIncome');
+const userLocation = $('#userLocation');
+const expense = $('#expense');
+const cost = $('#cost');
+const categories = $('#categories');
+const budgetTarget = $("#budget");
+const edit = $("#editIncome")
 
 let budget;
 let locations;
@@ -35,17 +36,12 @@ $("#form-1-submit").click(function (event) {
         budget = parseFloat(monthlyIncome.val());
         //Saves location for use in Yelp Api part of script.
         locations = userLocation.val();
-        //Sets the budget html to be equal to their monthly budget fixed to 2 decimal places.
-        $("#requestRest").prop("disabled", false);
-        var edit = $("#editIncome")
-        edit.removeClass("hidden")
 
-        edit.on("click", function (event) {
-            event.preventDefault();
-            $("#col-1").removeClass("hidden")
-            $("#col-2").addClass("hidden")
-            $(this).addClass("hidden");
-        });
+        //Removes disabled attr from restaurant request button
+        $("#requestRest").prop("disabled", false);
+
+        edit.removeClass("hidden");
+
         //Calculates budget (initially will be same as their input if no expenses already made).
         //calcBudget also saves to localStorage
         calcBudget();
@@ -203,6 +199,8 @@ function createExpense(passedExpense) {
         capitalExpenseName = expenseName;
         listItem.html(`${capitalExpenseName}: ${parseFloat(expenseCost).toFixed(2)}`);
         listItem.addClass(`list-group-item text-light float-left ${expenseObj[passedExpense][0]}`);
+        //Add expense costs to expenses (but dont resubtract from budget)
+        expenses += parseFloat(expenseCost);;
     } else if (!passedExpense) {
         let expenseName = $("#expense").val();
         expenseCost = $("#cost").val();
@@ -260,6 +258,13 @@ function getLocalStorage(k) {
     }
 }
 
+edit.on("click", function (event) {
+    event.preventDefault();
+    $("#col-1").removeClass("hidden")
+    $("#col-2").addClass("hidden")
+    $(this).addClass("hidden");
+});
+
 //Check and retreive from localStorage.
 getLocalStorage("budget");
 getLocalStorage("expense");
@@ -271,11 +276,16 @@ if (budget && locations) {
     $("#col-1").addClass("hidden");
     $("#col-2").removeClass("hidden");
     $("#editIncome").removeClass("hidden");
+    $("#requestRest").prop("disabled", false);
 }
 //If expenses already made, Add them to list and calc budget.
 if (expenseObj) {
     console.log(expenseObj)
-    for (expense in expenseObj) {
-        createExpense(expense);
+    for (storedExpense in expenseObj) {
+        createExpense(storedExpense);
     }
+    //Recalc budget with retreived expenses.
+    calcBudget();
 }
+
+console.log(expenses)
