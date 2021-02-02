@@ -10,7 +10,7 @@
   <!-- BootStrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="Assets/CSS/style.css">
 </head>
 
 <body>
@@ -19,8 +19,13 @@
       <!-- Round image logo for top left -->
       <img class="logo" src="./Assets/BudgetGrubsLogo.png" alt="Logo" style="height: 150px; width: 150px;">
     </a>
+    <!-- Button for returning to profile page -->
+    <div class="text-center">
+      <button id="returnToProfile" class="btn btn-primary">Select Different Profile</button>
+    </div>
+
     <div class="text-center btn">
-      <button id="editIncome" type="button2" class="btn btn-primary mb-2 hidden">Edit Income</button>
+      <button id="editIncome" type="button2" class="btn btn-primary mb-2">Edit Income</button>
     </div>
   </nav>
   <div id="any" class="container">
@@ -35,8 +40,9 @@
   </div>
 
 
-  <div id="h1">
+  <div>
     <h1 class="text-center mb-4">Please fill out the form to start making a budget!</h1>
+    <h2 id="profileDiv" class="text-center mb-3"></h2>
   </div>
   <!-- This button will display resturaunts from yelp api input based on budget. Needs to be finished -->
 
@@ -189,7 +195,7 @@
   <footer>
 
     <h3 class="text-center"><a href="second.html">Contact</a></h3>
-  
+
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
@@ -197,7 +203,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-  <script src="script.js"></script>
+
+  <!-- Custom JS -->
+  <script src="Assets/JS/script.js" type="text/Javascript"></script>
 </body>
 
 </html>

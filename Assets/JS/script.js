@@ -6,7 +6,10 @@ const expense = $('#expense');
 const cost = $('#cost');
 const categories = $('#categories');
 const budgetTarget = $("#budget");
-const edit = $("#editIncome")
+const edit = $("#editIncome");
+const profileBtn = $("#profileSubmit");
+const profileName = $("#profileName");
+const profileDiv = $("#profileDiv");
 
 let budget;
 let locations;
@@ -17,14 +20,61 @@ let expenses = 0;
 let expenseObj = {};
 let capitalExpenseName = "";
 
-//Fixs footer no matter what screen size is.
-let interval = setInterval(function () {
-    if ($(document).height() > $(window).height()) {
-        $('footer').css('position', 'relative');
-    } else {
-        $('footer').css('position', 'absolute');
+//Creat obj for storing profiles.
+let profiles = {};
+let selectedProfile;
+let activeProfileObject = {};
+
+profileBtn.on("click", function (event) {
+    event.preventDefault();
+
+    if (profileName.val()) {
+        liCreate(profileName.val());
+
+        //Add to object for storage reasons.
+        profiles[profileName.val()] = {};
+
+        setLocalStorage("profile", profiles);
     }
-}, 100);
+})
+
+// Create list items for profiles
+function liCreate(name) {
+    let listItem = $("<li>");
+    let span = $("<span>");
+    let button = $("<button>");
+
+    listItem.html(`${name}`);
+    listItem.addClass("float-left");
+
+    button.html("X");
+    button.addClass("li-btn float-right");
+    span.addClass("list-group-item");
+
+    button.click(liRemoval);
+    listItem.on("click", sendToBudget);
+
+    span.append(listItem);
+    span.append(button);
+    $("#profileList").append(span);
+}
+//Remove list items for profiles
+function liRemoval(event) {
+    event.preventDefault();
+    $(this).parent().remove();
+
+    //Delete the profile for button clicked.
+    //Formatted with some text that contains a part like ...>(profile name)<... so this just cleans up the text and grabs the profile name
+    delete profiles[`${$(this).parent().html().split(">")[1].split("<")[0]}`]
+    setLocalStorage("profile");
+}
+
+function sendToBudget() {
+    selectedProfile = $(this).parent().html().split(">")[1].split("<")[0];
+    setLocalStorage("profile", profiles);
+    setLocalStorage("activeProfile", selectedProfile);
+    window.location.href = "index.html";
+}
 
 //Click event for submission of monthly expense form
 $("#form-1-submit").click(function (event) {
@@ -272,20 +322,41 @@ function getLocalStorage(k) {
         }
     } else if (k === "location") {
         locations = localStorage.getItem(k);
+    } else if (k === "profile") {
+        let storedObjs = JSON.parse(localStorage.getItem("profile"));
+
+        if (storedObjs) {
+            profiles = storedObjs;
+
+            for (let obj in storedObjs) {
+                liCreate(obj);
+            }
+            console.log(profiles);
+        }
+    } else if (k === "activeProfile") {
+        selectedProfile = JSON.parse(localStorage.getItem("activeProfile"))
+        //Sets html to the current profile.
+        profileDiv.html("Current Profile: " + selectedProfile);
     }
 }
-
+//Edit monthly income button. Brings back the monthly income form and hides the expense form
 edit.on("click", function (event) {
     event.preventDefault();
     $("#col-1").removeClass("hidden")
     $("#col-2").addClass("hidden")
-    $(this).addClass("hidden");
 });
+
+$("#returnToProfile").on("click", function (event) {
+    event.preventDefault();
+    window.location.href = "profiles.html";
+})
 
 //Check and retreive from localStorage.
 getLocalStorage("budget");
 getLocalStorage("expense");
 getLocalStorage("location");
+getLocalStorage("profile");
+getLocalStorage("activeProfile");
 
 //If a budget and location was retreived from localStorage, update them and go to expense form.
 if (budget && locations) {
@@ -295,3 +366,12 @@ if (budget && locations) {
     $("#editIncome").removeClass("hidden");
     $("#requestRest").prop("disabled", false);
 }
+
+//Fixs footer no matter what screen size is.
+let interval = setInterval(function () {
+    if ($(document).height() > $(window).height()) {
+        $('footer').css('position', 'relative');
+    } else {
+        $('footer').css('position', 'absolute');
+    }
+}, 100);
