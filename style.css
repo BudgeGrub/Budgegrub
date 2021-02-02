@@ -106,7 +106,6 @@ select {
  .list-group {
     list-style-type: square;
     font-size: 20px;
-    color: blue;
  } 
 
 .gmap_canvas {
