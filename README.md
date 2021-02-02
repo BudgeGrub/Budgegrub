@@ -12,4 +12,7 @@ Image to be added
 ![Alt text](./Assets/AppScreenShot.png "BudgetGrubs")
 
 
-Credits: Names
+Credits: BudgetGrubs is a Group Project by
+Ree Britt, Nathan Peek, Fransisco Ortega, Mike Gordillo.
+Four Students of the university of Miami Full Stack 
+Developer coding Bootcamp. 
