@@ -1,0 +1,17 @@
+body {
+    background: #555;
+}
+
+header {
+    background: teal;
+}
+
+form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+ul {
+    max-width: 350px;
+    margin: 0 auto;
+}
