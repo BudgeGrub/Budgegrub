@@ -27,9 +27,6 @@ $('#login').click(function (event) {
     } else {
         alert('wrong password');
     }
-
-
-
 })
 
 function setLocalStorage(k, v) {
