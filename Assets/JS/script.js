@@ -164,9 +164,20 @@ anime.timeline({ loop: true })
         easing: "easeOutExpo",
         delay: 3000
     });
-//Requewst restaurants from yelp api
+//Request restaurants from yelp api
 $("#requestRest").on("click", function () {
-    var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search"
+    let myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search"
+    let priceQuery;
+    //determine query price based on budget
+    if (budget < 400) {
+        priceQuery = 1;
+    } else if (budget >= 400 && budget < 550) {
+        priceQuery = 2;
+    } else if (budget >= 550 && budget < 750) {
+        priceQuery = 3;
+    } else if (budget >= 750) {
+        priceQuery = 4;
+    }
 
     $.ajax({
         url: myurl,
@@ -177,7 +188,7 @@ $("#requestRest").on("click", function () {
             'Authorization': `Bearer ${atob('RTQzbnlDWU9uYTJrVDFMRTJ0a3VEcTJpMHl5SWFqWFlRdGh1ZDQ2RkhrcUlrZEFZM0RJZHpWQVpnbW4zZzlvczNWeUROaVVZRXBoTTd4MEdUcmthYmxJT2xHUS1vZ3N1NlZtRml4azNad2pQSlBZajBwdDV1R0JoTmFVWllIWXg=')}`,
         },
         method: 'GET',
-        data: { term: 'restaurant', location: locations, limit: '5', price: '1' },
+        data: { term: 'restaurant', location: locations, limit: '5', price: priceQuery },
     }).then(function (response) {
         for (let i = 0; i < response.businesses.length; i++) {
             restaurants[response.businesses[i].name] = response.businesses[i].coordinates;
