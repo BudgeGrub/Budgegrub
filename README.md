@@ -14,8 +14,16 @@ Font Awesome
 # Concept
 BUDGETGRUBS provides an interface to enter your monthly budget & expenses to retrieve places to eat within your monthly budget.
 
+# Criteria 
+App will ask user to create a user name and password.
+It will store that data in local storage and ask the user if
+they're a returning user by giving the user the option of login in,
+or registering.
+Once registered, upon submitting the password it will direct you to 
+an input form that asks for monthly income and location.
+
 # Motivation
-Who doesn't like to eat? Food is not only about survival but also is enjoyable and during these challenges time, we wanted to provide an effective way to locate restaurants that will not break your budget bank!
+Who doesn't like to eat? Food is not only about survival but also is enjoyable and during these challenging times, we wanted to provide an effective way to locate restaurants that will not break your budget bank!
 
 # User Story
 As a new or returning user, I want to be able to make a new profile or select an old one from localStorage.
