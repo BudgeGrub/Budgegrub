@@ -9,4 +9,10 @@ Link: https://budgegrub.github.io/Budgegrub/
 
 Image to be added
 
-Credits: Names
+![Alt text](./Assets/AppScreenShot.png "BudgetGrubs")
+
+
+Credits: BudgetGrubs is a Group Project by
+Ree Britt, Nathan Peek, Fransisco Ortega, Mike Gordillo.
+Four Students of the university of Miami Full Stack 
+Developer coding Bootcamp. 
