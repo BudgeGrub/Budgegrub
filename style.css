@@ -198,31 +198,6 @@ li {
     height: 450px;
 }
 
-footer {
-    background: teal;
-    margin-bottom: 0;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    bottom: 0;
-    width: 100%;
-}
-
-footer a {
-    text-decoration: none;
-    cursor: pointer;
-    color: white;
-}
-
-footer h3 {
-    margin-bottom: 0;
-    color: rgb(88, 248, 187);;
-}
-
-
-
 .fa-facebook {
     background: #3B5998;
     color: white;
@@ -248,12 +223,37 @@ footer h3 {
     float: right;
 }
 
-li {
-    width: 250px;
-    background:rgb(179, 224, 255) !important;
+.icon-container {
+    display: flex;
+    justify-content: center;
 }
 
+.icon-container a {
+    margin-left: 6px;
+}
 
+footer {
+    background: teal;
+    margin-bottom: 0;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    bottom: 0;
+    width: 100%;
+}
+
+footer a {
+    text-decoration: none;
+    cursor: pointer;
+    color: white;
+}
+
+footer h3 {
+    margin-bottom: 0;
+    color: rgb(88, 248, 187);;
+}
 
 @media only screen and (max-width: 850px) {
     body {
