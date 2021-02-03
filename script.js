@@ -128,7 +128,8 @@ $("#requestRest").on("click", function () {
         data: { term: 'restaurant', location: locations, limit: '5', price: '1' },
     }).then(function (response) {
         for (let i = 0; i < response.businesses.length; i++) {
-            restaurants[response.businesses[i].name] = response.businesses[i].coordinates;
+            restaurants[response.businesses[i].name] = { lat: `${response.businesses[i].coordinates.latitude}`, lng: `${response.businesses[i].coordinates.longitude}` };
+            console.log(restaurants);
             let restData = response.businesses[i];
             console.log(restData);
 
