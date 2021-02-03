@@ -114,6 +114,7 @@ anime.timeline({ loop: true })
     });
 //Requewst restaurants from yelp api
 $("#requestRest").on("click", function () {
+    $("#map-request").removeClass("hidden");
     var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search"
 
     $.ajax({
@@ -161,6 +162,30 @@ $("#requestRest").on("click", function () {
         }
     });
 });
+var map;
+function addMarker(coordinates) {
+    var marker = new google.maps.Marker({
+       position: coordinates, // Passing the coordinates coordinates:
+       map:map, //Map that we need to add
+       draggarble: false// If set to true you can drag the marker
+    });
+ }
+ function initMap() {
+     var options = {
+         zoom:12,
+         center: {lat: 25.7617, lng: -80.1918 } //Coordinates of Miami
+        }
+        map = new google.maps.Map(document.getElementById('map'), options);
+        addMarker({lat: 25.7781024, lng: -80.2897029}); // restaurant Coordinates
+        for (let place in restaurants){
+            let variable = restaurants[place]
+            addMarker(place)
+        }
+        }
+ $("#map-request").on("click", function(){
+    $("#map").removeClass("hidden");
+    //  addMarker({lat: 40.7831, lng: -73.9712}); // Manhattan Coordinates
+})
 
 //For Calculating budget when a new income has been set
 function calcBudget() {
