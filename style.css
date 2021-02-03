@@ -102,11 +102,11 @@ select {
     height: 250px;
     width: 150px;
   }
-
+/* 
  .list-group {
     list-style-type: square;
     font-size: 20px;
- } 
+ }  */
 
 .gmap_canvas {
     overflow: hidden;
