@@ -22,7 +22,7 @@ $('#login').click(function (event) {
     var storedUserName = getLocalStorage('userName');
     var storedPassWord = getLocalStorage('password');
     if (storedUserName === userName && storedPassWord === passWord) {
-        window.location.href = '../index.html'
+        window.location.href = 'profiles.html';
 
     } else {
         alert('wrong password');

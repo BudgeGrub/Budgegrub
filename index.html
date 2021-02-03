@@ -2,200 +2,31 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Class Project App</title>
-  <!-- Font awesome CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <!-- BootStrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="Assets/CSS/login.css">
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-bg navbar-transparent bg-transparent">
-    <a class="navbar-brand" href="#">
-      <!-- Round image logo for top left -->
-      <img class="logo" src="./Assets/BudgetGrubsLogo.png" alt="Logo" style="height: 150px; width: 150px;">
-    </a>
-    <div class="text-center btn">
-      <button id="editIncome" type="button2" class="btn btn-primary mb-2 hidden">Edit Income</button>
-    </div>
-  </nav>
-  <div id="any" class="container">
-    <h1 class="ml5">
-      <span class="text-wrapper">
-        <span class="line line1"></span>
-        <span class="letters letters-left">Custom Dining</span>
-        <span class="letters letters-right">Options</span>
-        <span class="line line2"></span>
-      </span>
-    </h1>
-  </div>
+    <form id="login-form" class="box">
 
+        <h1>Login</h1>
+        <input type="text" name="" placeholder="Enter Username" id="username">
+        <input type="password" name="" placeholder="Enter Password" id="password">
+        <small>Register Here</small>
+        <input type="submit" name="" value="Login" id="login">
+    </form>
 
-  <div id="h1">
-    <h1 class="text-center mb-4">Please fill out the form to start making a budget!</h1>
-  </div>
-  <!-- This button will display resturaunts from yelp api input based on budget. Needs to be finished -->
+    <form id="register-form" class="hidden box">
+        <h1>Register</h1>
+        <input type="text" name="" placeholder="Enter Username" id="name">
+        <input type="password" name="" placeholder="Enter Password" id="createPass">
+        <input type="submit" name="" value="Register" id="register">
 
-  <main class="container">
-
-    <!-- Single row for containing both forms -->
-    <div class="row">
-      <!-- Column for first form for entering monthly budget and location -->
-      <div id="col-1" class="col-lg-12">
-
-        <!-- Form -->
-        <form class="form-group px-5">
-          <h2 class="text-center mt-3">Enter monthly income and location</h2>
-          <!-- Input for first name -->
-          <div class="input-group pt-3 mb-2">
-            <div class="input-group-prepend">
-              <label class="input-group-text" for="firstName">First name</label>
-            </div>
-            <input id="firstName" type="text" class="form-control">
-          </div>
-          <!-- Input for last name -->
-          <div class="input-group mb-2">
-            <div class="input-group-prepend">
-              <label class="input-group-text" for="lastName">Last name</label>
-            </div>
-            <input id="lastName" type="text" class="form-control">
-          </div>
-          <!-- Input for Monthly income -->
-          <div class="input-group mb-2">
-            <div class="input-group-prepend">
-              <label for="monthlyIncome" class="input-group-text">Monthly Income $</label>
-            </div>
-            <input id="monthlyIncome" type="number" class="form-control" required>
-          </div>
-          <!-- Input for location -->
-          <div class="input-group mb-2">
-            <div class="input-group-prepend">
-              <label class="input-group-text" for="userLocation">Location</label>
-            </div>
-            <input id="userLocation" type="text" class="form-control" placeholder="Enter location" required />
-            <p class="footnote ml-2"><em>Enter full address or city/state (1234 Example Rd, Tallahasee, FL
-                32304 or
-                Tallahasee, FL 32304</em>
-            </p>
-          </div>
-
-          <div class="text-center">
-            <button id="form-1-submit" type="submit" class="btn btn-primary mb-3">Submit</button>
-          </div>
-        </form>
-      </div>
-
-      <!-- column for second form that takes expenses. Starts off hidden from user until first form submitted-->
-      <div id="col-2" class="col-lg-12 hidden">
-        <form class="form-group px-5">
-          <h2 class="text-center mt-3">Expenses</h2>
-          <!-- Input for name of expense -->
-          <div class="input-group pt-3 mb-2">
-            <div class="input-group-prepend">
-              <label for="expense" class="input-group-text">Name of Expense</label>
-            </div>
-            <input id="expense" type="text" class="form-control">
-          </div>
-          <!-- Amlunt of expense -->
-          <div class="input-group mb-2">
-            <div class="input-group-prepend">
-              <label for="cost" class="input-group-text">Cost of Expense $</label>
-            </div>
-            <input id="cost" type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
-          </div>
-          <!-- Select options for type of expense -->
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <label for="catagories" class="input-group-text">Type of Expense</label>
-            </div>
-
-            <select name="categories" id="categories" class="custom-select custom-select-lg">
-              <option value="rent">Mortgage / Rent</option>
-              <option value="utilities">Utilities</option>
-              <option value="car-loan">Car Payments</option>
-              <option value="car-insurance">Car Insurance</option>
-              <option value="insurance">Other Insurance</option>
-              <option value="groceries">Groceries</option>
-              <option value="dining">Dining expense</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-
-          <div class="text-center">
-            <button id="form-2-submit" type="submit" class="btn btn-primary mb-3">Submit</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </main>
-  <!-- Container for rest of code -->
-  <div class="second container">
-    <!-- Display for current month's budget -->
-    <div class="income-display">
-      <div id="budget" class="b text-center">Current budget</div>
-
-      <!-- Unordered list of expenses added from form -->
-      <ul id="listOfExpenses" class="list-group text-light mt-3">
-        <!-- Use JS to add Li's -->
-      </ul>
-
-    </div>
-    <!-- This button will display resturaunts from yelp api input based on budget. Needs to be finished -->
-    <div class="btn mt-4">
-      <button id="requestRest" type="button" class="btn btn-lg btn-primary" disabled>Get Restaurants</button>
-    </div>
-
-    <!-- Carousel for image of restaurants displayed when above button is clicked (currently displays anyways) -->
-    <div id="demo" class="carousel mb-5" data-ride="carousel">
-
-      <!-- Indicators -->
-      <ul class="carousel-indicators">
-
-      </ul>
-
-      <!-- The slideshow -->
-      <div id="carouselImages" class="carousel-inner">
-
-      </div>
-
-      <!-- Left and right controls -->
-      <a class="carousel-control-prev" href="#demo" data-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-      </a>
-      <a class="carousel-control-next" href="#demo" data-slide="next">
-        <span class="carousel-control-next-icon"></span>
-      </a>
-
-    </div>
-    <!-- Placeholder for googlemaps api stuff -->
-    <!-- <div>
-      <div class="mapouter">
-        <div class="gmap_canvas mb-5">
-          <iframe width="150" height="250" id="gmap_canvas"
-            src="https://maps.google.com/maps?q=11530%20griffing%20blvd&t=&z=13&ie=UTF8&iwloc=&output=embed"
-            frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-          <a href="https://www.whatismyip-address.com"></a><br>
-          <a href="https://www.embedgooglemap.net"></a>
-        </div>
-      </div>
-    </div> -->
-
-  </div>
-
-  <footer>
-    <h3 class="text-center"><a href="second.html">Contact</a></h3>
-  </footer>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-  <script src="script.js"></script>
+    </form>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="Assets/JS/login.js"></script>
 </body>
 
 </html>
