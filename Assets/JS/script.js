@@ -178,7 +178,15 @@ $("#requestRest").on("click", function () {
     } else if (budget >= 750) {
         priceQuery = 4;
     }
+
+    //Show map button and get geolocation for maps
     $("#map-request").removeClass("hidden");
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            map.setCenter(initialLocation);
+        });
+    }
 
     $.ajax({
         url: myurl,
@@ -247,12 +255,6 @@ $("#map-request").on("click", function () {
     $("#map").removeClass("hidden");
     //  addMarker({lat: 40.7831, lng: -73.9712}); // Manhattan Coordinates
 })
-if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function (position) {
-        initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-        map.setCenter(initialLocation);
-    });
-}
 
 //For Calculating budget when a new income has been set
 function calcBudget() {
