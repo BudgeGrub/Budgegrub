@@ -348,7 +348,6 @@ function getLocalStorage(k) {
                 for (let obj in storedObjs) {
                     liCreate(obj);
                 }
-                console.log(profiles);
             }
         } else if (k === "activeProfile") {
             selectedProfile = JSON.parse(localStorage.getItem("activeProfile"));
