@@ -2,7 +2,6 @@ body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    background:;
 }
 .box {
     width: 300px;
@@ -66,4 +65,8 @@ cursor: pointer;
     border-radius: 3rem;
 
 
+}
+
+.hidden {
+    display: none;
 }

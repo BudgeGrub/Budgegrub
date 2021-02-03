@@ -6,7 +6,10 @@ const expense = $('#expense');
 const cost = $('#cost');
 const categories = $('#categories');
 const budgetTarget = $("#budget");
-const edit = $("#editIncome")
+const edit = $("#editIncome");
+const profileBtn = $("#profileSubmit");
+const profileName = $("#profileName");
+const profileDiv = $("#profileDiv");
 
 let budget;
 let locations;
@@ -17,14 +20,61 @@ let expenses = 0;
 let expenseObj = {};
 let capitalExpenseName = "";
 
-//Fixs footer no matter what screen size is.
-let interval = setInterval(function () {
-    if ($(document).height() > $(window).height()) {
-        $('footer').css('position', 'relative');
-    } else {
-        $('footer').css('position', 'absolute');
+//Creat obj for storing profiles.
+let profiles = {};
+let selectedProfile;
+let activeProfileObject = {};
+
+profileBtn.on("click", function (event) {
+    event.preventDefault();
+
+    if (profileName.val()) {
+        liCreate(profileName.val());
+
+        //Add to object for storage reasons.
+        profiles[profileName.val()] = {};
+
+        setLocalStorage("profile", profiles);
     }
-}, 100);
+})
+
+// Create list items for profiles
+function liCreate(name) {
+    let listItem = $("<li>");
+    let span = $("<span>");
+    let button = $("<button>");
+
+    listItem.html(`${name}`);
+    listItem.addClass("float-left");
+
+    button.html("X");
+    button.addClass("li-btn float-right");
+    span.addClass("list-group-item");
+
+    button.click(liRemoval);
+    listItem.on("click", sendToBudget);
+
+    span.append(listItem);
+    span.append(button);
+    $("#profileList").append(span);
+}
+//Remove list items for profiles
+function liRemoval(event) {
+    event.preventDefault();
+    $(this).parent().remove();
+
+    //Delete the profile for button clicked.
+    //Formatted with some text that contains a part like ...>(profile name)<... so this just cleans up the text and grabs the profile name
+    delete profiles[`${$(this).parent().html().split(">")[1].split("<")[0]}`]
+    setLocalStorage("profile", profiles);
+}
+
+function sendToBudget() {
+    selectedProfile = $(this).parent().html().split(">")[1].split("<")[0];
+    setLocalStorage("profile", profiles);
+    setLocalStorage("activeProfile", selectedProfile);
+    window.location.href = "budget.html";
+}
 
 //Click event for submission of monthly expense form
 $("#form-1-submit").click(function (event) {
@@ -46,7 +96,8 @@ $("#form-1-submit").click(function (event) {
         //calcBudget also saves to localStorage
         calcBudget();
         //Save location to localStorage
-        setLocalStorage("location", locations);
+        profiles[selectedProfile].location = locations
+        setLocalStorage("profile", profiles);
     }
 
 });
@@ -61,7 +112,8 @@ $("#form-2-submit").click(function (event) {
         expenseObj[capitalExpenseName] = [categories.val(), parseFloat($("#cost").val()).toFixed(2)];
 
         //Save to localStorage
-        setLocalStorage("expense", expenseObj);
+        profiles[selectedProfile].expenseObjs = expenseObj
+        setLocalStorage("profile", profiles);
 
         //Clear inputs
         $("#expense").val('');
@@ -112,9 +164,20 @@ anime.timeline({ loop: true })
         easing: "easeOutExpo",
         delay: 3000
     });
-//Requewst restaurants from yelp api
+//Request restaurants from yelp api
 $("#requestRest").on("click", function () {
-    var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search"
+    let myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search"
+    let priceQuery;
+    //determine query price based on budget
+    if (budget < 400) {
+        priceQuery = 1;
+    } else if (budget >= 400 && budget < 550) {
+        priceQuery = 2;
+    } else if (budget >= 550 && budget < 750) {
+        priceQuery = 3;
+    } else if (budget >= 750) {
+        priceQuery = 4;
+    }
 
     $.ajax({
         url: myurl,
@@ -125,7 +188,7 @@ $("#requestRest").on("click", function () {
             'Authorization': `Bearer ${atob('RTQzbnlDWU9uYTJrVDFMRTJ0a3VEcTJpMHl5SWFqWFlRdGh1ZDQ2RkhrcUlrZEFZM0RJZHpWQVpnbW4zZzlvczNWeUROaVVZRXBoTTd4MEdUcmthYmxJT2xHUS1vZ3N1NlZtRml4azNad2pQSlBZajBwdDV1R0JoTmFVWllIWXg=')}`,
         },
         method: 'GET',
-        data: { term: 'restaurant', location: locations, limit: '5', price: '1' },
+        data: { term: 'restaurant', location: locations, limit: '5', price: priceQuery },
     }).then(function (response) {
         for (let i = 0; i < response.businesses.length; i++) {
             restaurants[response.businesses[i].name] = { lat: `${response.businesses[i].coordinates.latitude}`, lng: `${response.businesses[i].coordinates.longitude}` };
@@ -168,7 +231,8 @@ function calcBudget() {
     budget -= parseFloat(expenses);
     budgetTarget.html(`$${(parseFloat(budget)).toFixed(2)}`)
     //Save to local storage
-    setLocalStorage("budget", budget);
+    profiles[selectedProfile].budgets = budget
+    setLocalStorage("profile", profiles);
 }
 
 //Calc budget when new expense is added
@@ -176,14 +240,16 @@ function subBudget(expense) {
     budget -= parseFloat(expense);
     budgetTarget.html(`$${(parseFloat(budget)).toFixed(2)}`)
     //Update localStorage budget
-    setLocalStorage("budget", budget);
+    profiles[selectedProfile].budgets = budget
+    setLocalStorage("profile", profiles);
 }
 //Calc budget when expense is removed
 function addBudget(removedExpense) {
     budget += parseFloat(removedExpense);
     budgetTarget.html(`$${(parseFloat(budget)).toFixed(2)}`)
     //Update localStorage budget
-    setLocalStorage("budget", budget);
+    profiles[selectedProfile].budgets = budget
+    setLocalStorage("profile", profiles);
 }
 
 //Create expense list item;
@@ -244,7 +310,8 @@ function createExpense(passedExpense) {
 
         //remove from localStorage obj
         delete expenseObj[$(this).parent().html().split(":")[0]];
-        setLocalStorage("expense", expenseObj);
+        profiles[selectedProfile].expenseObjs = expenseObj
+        setLocalStorage("profile", profiles);
     })
 
     listItem.append(button);
@@ -258,32 +325,64 @@ function setLocalStorage(k, obj) {
 }
 
 function getLocalStorage(k) {
-    if (k === "budget") {
-        budget = parseFloat(localStorage.getItem(k));
-    } else if (k === "expense") {
-        expenseObj = JSON.parse(localStorage.getItem(k));
-        //If an expenseObj already in localStorage, set ours equal to it and creat the html elements.
-        if (expenseObj) {
-            for (storedExpense in expenseObj) {
-                createExpense(storedExpense);
+    let retreivedData = JSON.parse(localStorage.getItem("profile"));
+
+    if (retreivedData) {
+        if (selectedProfile) {
+            if (k === "budget") {
+                if (profiles[selectedProfile].budgets) {
+                    budget = parseFloat(profiles[selectedProfile].budgets);
+                }
+            } else if (k === "expense") {
+                //If an expenseObj already in localStorage, set ours equal to it and creat the html elements.
+                if (profiles[selectedProfile].expenseObjs) {
+                    expenseObj = profiles[selectedProfile].expenseObjs;
+
+                    for (storedExpense in expenseObj) {
+                        createExpense(storedExpense);
+                    }
+                    //If it doesnt exist, set it back to an empty obj.
+                } else {
+                    expenseObj = {};
+                }
+            } else if (k === "location") {
+                if (profiles[selectedProfile].location) {
+                    locations = profiles[selectedProfile].location;
+                }
             }
-            //If it doesnt exist, set it back to an empty obj.
-        } else {
-            expenseObj = {};
         }
-    } else if (k === "location") {
-        locations = localStorage.getItem(k);
+        if (k === "profile") {
+            let storedObjs = retreivedData;
+
+            if (storedObjs) {
+                profiles = storedObjs;
+
+                for (let obj in storedObjs) {
+                    liCreate(obj);
+                }
+            }
+        } else if (k === "activeProfile") {
+            selectedProfile = JSON.parse(localStorage.getItem("activeProfile"));
+            //Sets html to the current profile.
+            profileDiv.html("Current Profile: " + selectedProfile);
+        }
     }
 }
-
+//Edit monthly income button. Brings back the monthly income form and hides the expense form
 edit.on("click", function (event) {
     event.preventDefault();
     $("#col-1").removeClass("hidden")
     $("#col-2").addClass("hidden")
-    $(this).addClass("hidden");
 });
 
+$("#returnToProfile").on("click", function (event) {
+    event.preventDefault();
+    window.location.href = "profiles.html";
+})
+
 //Check and retreive from localStorage.
+getLocalStorage("profile");
+getLocalStorage("activeProfile");
 getLocalStorage("budget");
 getLocalStorage("expense");
 getLocalStorage("location");
@@ -296,3 +395,12 @@ if (budget && locations) {
     $("#editIncome").removeClass("hidden");
     $("#requestRest").prop("disabled", false);
 }
+
+//Fixs footer no matter what screen size is.
+let interval = setInterval(function () {
+    if ($(document).height() > $(window).height()) {
+        $('footer').css('position', 'relative');
+    } else {
+        $('footer').css('position', 'absolute');
+    }
+}, 100);
