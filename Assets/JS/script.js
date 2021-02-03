@@ -66,7 +66,7 @@ function liRemoval(event) {
     //Delete the profile for button clicked.
     //Formatted with some text that contains a part like ...>(profile name)<... so this just cleans up the text and grabs the profile name
     delete profiles[`${$(this).parent().html().split(">")[1].split("<")[0]}`]
-    setLocalStorage("profile");
+    setLocalStorage("profile", profiles);
 }
 
 function sendToBudget() {
@@ -376,7 +376,7 @@ edit.on("click", function (event) {
 
 $("#returnToProfile").on("click", function (event) {
     event.preventDefault();
-    window.location.href = "index.html";
+    window.location.href = "profiles.html";
 })
 
 //Check and retreive from localStorage.
