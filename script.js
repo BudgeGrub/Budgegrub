@@ -159,33 +159,36 @@ $("#requestRest").on("click", function () {
             div.append(header);
             div.append(img);
             $("#carouselImages").append(div);
+            addMarker({ lat: restData.coordinates.latitude, lng: restData.coordinates.longitude }); // restaurant Coordinates
         }
     });
 });
 var map;
 function addMarker(coordinates) {
     var marker = new google.maps.Marker({
-       position: coordinates, // Passing the coordinates coordinates:
-       map:map, //Map that we need to add
-       draggarble: false// If set to true you can drag the marker
+        position: coordinates, // Passing the coordinates coordinates:
+        map: map, //Map that we need to add
+        draggarble: false// If set to true you can drag the marker
     });
- }
- function initMap() {
-     var options = {
-         zoom:12,
-         center: {lat: 25.7617, lng: -80.1918 } //Coordinates of Miami
-        }
-        map = new google.maps.Map(document.getElementById('map'), options);
-        addMarker({lat: 25.7781024, lng: -80.2897029}); // restaurant Coordinates
-        for (let place in restaurants){
-            let variable = restaurants[place]
-            addMarker(place)
-        }
-        }
- $("#map-request").on("click", function(){
+}
+function initMap() {
+    var options = {
+        zoom: 12,
+        center: { lat: 25.7617, lng: -80.1918 } //Coordinates of Miami
+    }
+    map = new google.maps.Map(document.getElementById('map'), options);
+}
+
+$("#map-request").on("click", function () {
     $("#map").removeClass("hidden");
     //  addMarker({lat: 40.7831, lng: -73.9712}); // Manhattan Coordinates
 })
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function (position) {
+        initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        map.setCenter(initialLocation);
+    });
+}
 
 //For Calculating budget when a new income has been set
 function calcBudget() {
