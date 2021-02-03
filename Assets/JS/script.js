@@ -73,7 +73,7 @@ function sendToBudget() {
     selectedProfile = $(this).parent().html().split(">")[1].split("<")[0];
     setLocalStorage("profile", profiles);
     setLocalStorage("activeProfile", selectedProfile);
-    window.location.href = "index.html";
+    window.location.href = "budget.html";
 }
 
 //Click event for submission of monthly expense form
@@ -96,7 +96,8 @@ $("#form-1-submit").click(function (event) {
         //calcBudget also saves to localStorage
         calcBudget();
         //Save location to localStorage
-        setLocalStorage("location", locations);
+        profiles[selectedProfile].location = locations
+        setLocalStorage("profile", profiles);
     }
 
 });
@@ -111,7 +112,8 @@ $("#form-2-submit").click(function (event) {
         expenseObj[capitalExpenseName] = [categories.val(), parseFloat($("#cost").val()).toFixed(2)];
 
         //Save to localStorage
-        setLocalStorage("expense", expenseObj);
+        profiles[selectedProfile].expenseObjs = expenseObj
+        setLocalStorage("profile", profiles);
 
         //Clear inputs
         $("#expense").val('');
@@ -217,7 +219,8 @@ function calcBudget() {
     budget -= parseFloat(expenses);
     budgetTarget.html(`$${(parseFloat(budget)).toFixed(2)}`)
     //Save to local storage
-    setLocalStorage("budget", budget);
+    profiles[selectedProfile].budgets = budget
+    setLocalStorage("profile", profiles);
 }
 
 //Calc budget when new expense is added
@@ -225,14 +228,16 @@ function subBudget(expense) {
     budget -= parseFloat(expense);
     budgetTarget.html(`$${(parseFloat(budget)).toFixed(2)}`)
     //Update localStorage budget
-    setLocalStorage("budget", budget);
+    profiles[selectedProfile].budgets = budget
+    setLocalStorage("profile", profiles);
 }
 //Calc budget when expense is removed
 function addBudget(removedExpense) {
     budget += parseFloat(removedExpense);
     budgetTarget.html(`$${(parseFloat(budget)).toFixed(2)}`)
     //Update localStorage budget
-    setLocalStorage("budget", budget);
+    profiles[selectedProfile].budgets = budget
+    setLocalStorage("profile", profiles);
 }
 
 //Create expense list item;
@@ -293,7 +298,8 @@ function createExpense(passedExpense) {
 
         //remove from localStorage obj
         delete expenseObj[$(this).parent().html().split(":")[0]];
-        setLocalStorage("expense", expenseObj);
+        profiles[selectedProfile].expenseObjs = expenseObj
+        setLocalStorage("profile", profiles);
     })
 
     listItem.append(button);
@@ -307,36 +313,48 @@ function setLocalStorage(k, obj) {
 }
 
 function getLocalStorage(k) {
-    if (k === "budget") {
-        budget = parseFloat(localStorage.getItem(k));
-    } else if (k === "expense") {
-        expenseObj = JSON.parse(localStorage.getItem(k));
-        //If an expenseObj already in localStorage, set ours equal to it and creat the html elements.
-        if (expenseObj) {
-            for (storedExpense in expenseObj) {
-                createExpense(storedExpense);
-            }
-            //If it doesnt exist, set it back to an empty obj.
-        } else {
-            expenseObj = {};
-        }
-    } else if (k === "location") {
-        locations = localStorage.getItem(k);
-    } else if (k === "profile") {
-        let storedObjs = JSON.parse(localStorage.getItem("profile"));
+    let retreivedData = JSON.parse(localStorage.getItem("profile"));
 
-        if (storedObjs) {
-            profiles = storedObjs;
+    if (retreivedData) {
+        if (selectedProfile) {
+            if (k === "budget") {
+                if (profiles[selectedProfile].budgets) {
+                    budget = parseFloat(profiles[selectedProfile].budgets);
+                }
+            } else if (k === "expense") {
+                //If an expenseObj already in localStorage, set ours equal to it and creat the html elements.
+                if (profiles[selectedProfile].expenseObjs) {
+                    expenseObj = profiles[selectedProfile].expenseObjs;
 
-            for (let obj in storedObjs) {
-                liCreate(obj);
+                    for (storedExpense in expenseObj) {
+                        createExpense(storedExpense);
+                    }
+                    //If it doesnt exist, set it back to an empty obj.
+                } else {
+                    expenseObj = {};
+                }
+            } else if (k === "location") {
+                if (profiles[selectedProfile].location) {
+                    locations = profiles[selectedProfile].location;
+                }
             }
-            console.log(profiles);
         }
-    } else if (k === "activeProfile") {
-        selectedProfile = JSON.parse(localStorage.getItem("activeProfile"))
-        //Sets html to the current profile.
-        profileDiv.html("Current Profile: " + selectedProfile);
+        if (k === "profile") {
+            let storedObjs = retreivedData;
+
+            if (storedObjs) {
+                profiles = storedObjs;
+
+                for (let obj in storedObjs) {
+                    liCreate(obj);
+                }
+                console.log(profiles);
+            }
+        } else if (k === "activeProfile") {
+            selectedProfile = JSON.parse(localStorage.getItem("activeProfile"));
+            //Sets html to the current profile.
+            profileDiv.html("Current Profile: " + selectedProfile);
+        }
     }
 }
 //Edit monthly income button. Brings back the monthly income form and hides the expense form
@@ -348,15 +366,15 @@ edit.on("click", function (event) {
 
 $("#returnToProfile").on("click", function (event) {
     event.preventDefault();
-    window.location.href = "profiles.html";
+    window.location.href = "index.html";
 })
 
 //Check and retreive from localStorage.
+getLocalStorage("profile");
+getLocalStorage("activeProfile");
 getLocalStorage("budget");
 getLocalStorage("expense");
 getLocalStorage("location");
-getLocalStorage("profile");
-getLocalStorage("activeProfile");
 
 //If a budget and location was retreived from localStorage, update them and go to expense form.
 if (budget && locations) {
