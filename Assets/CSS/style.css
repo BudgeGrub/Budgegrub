@@ -263,12 +263,6 @@ footer h3 {
     float: right;
 }
 
-li {
-    width: 250px;
-    background:rgb(179, 224, 255) !important;
-}
-
-
 @media only screen and (max-width: 850px) {
     body {
         background-repeat: initial;
