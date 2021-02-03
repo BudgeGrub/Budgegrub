@@ -3,10 +3,12 @@
   <head>
     <title>Multi Restaurant Results to Map</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwt4jc2BU4QM1PVfbFzQ9l-xRk7o8M27Q&callback=initMap&libraries=&v=weekly"
       defer
     ></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
     <style type="text/css">
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -24,17 +26,14 @@
       }
     </style>
     <script>
-    // THE SCRIPT IS A VARIABLE AND IS SOURCED FROM PARSED API RESPONSE
-    // var script = document.createElement('script'); script.src = 'HTTTP://YELPRESPONSE.geojsonp';
-    // CALL BACK FUNCTION TO PLACE API RESPONSE INTO EQ  
-    // When the script runs, the target domain passes the data as an argument to another script, usually named callback(). The target domain defines the callback script name, which is the first name on the page when you load the target URL in a browser.
-//     function eqfeed_callback(response) {
-//       map.data.addGeoJson(response);
-//       }
+ 
 // THIS METHOD IS USED TO PLACE THE PARSED GEOJSON INTO MAP
-// addGeoJson()
+function addGeoJson(){
+    var coordinates = results.features[i].coordinates;
+    console.log(results.features[i].coordinates)
+}
 
-document.getElementsByTagName('head')[0].appendChild(script);
+document.getElementById("map")[0].appendChild(response.businesses[i].coordinates);
       let map;
 
       function initMap() {
@@ -47,16 +46,16 @@ document.getElementsByTagName('head')[0].appendChild(script);
         const script = document.createElement("script");
         // THE GeoJSON SHOULD BE STORED AT
         // "assets/yelp_results_GeoJSONP.js"
-        script.src =
-          "assets/yelp_response_GeoJSONP.js";
-        document.getElementsByTagName("head")[0].appendChild(script);
+        script.src = restData;
+        console.log(restData);
+        document.getElementsByTagName("head")[0].appendChild(restData);
       }
 
       // Loop through the results array and place a marker for each
       // set of coordinates.
-      const eqfeed_callback = function (results) {
-        for (let i = 0; i < results.features.length; i++) {
-          const coords = results.features[i].geometry.coordinates;
+      const coordinates = function (response) {
+        for (let i = 0; i < response.businesses.length; i++) {
+          const coords = response.businesses[i].coordinates;
           const latLng = new google.maps.LatLng(coords[1], coords[0]);
           new google.maps.Marker({
             position: latLng,
@@ -67,7 +66,20 @@ document.getElementsByTagName('head')[0].appendChild(script);
     </script>
   </head>
   <body>
-    <div id="map"></div>
-    
+
+    <button id="map-request">Request map</button>
+  <script src="script.js">
+$("#map-request").on("click", function(){
+        map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 2,
+          center: new google.maps.LatLng(2.8, -187.3),
+          mapTypeId: "terrain",
+        });
+ 
+      }
+    </script>
   </body>
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </html>
