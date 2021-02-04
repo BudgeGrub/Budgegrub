@@ -56,10 +56,9 @@ The Dinig options will Include Name, Location, price range and pictures.
 Link: https://budgegrub.github.io/Budgegrub/
 gitHub: https://github.com/BudgeGrub/Budgegrub
 
-Image to be added
 
-![Alt text](./Assets/AppScreenShot.png "BudgetGrubs")
-
+![Screenshot of Application](./Assets/AppScreenShot.png "BudgetGrubs")
+![Gif of BudgeGrub application](./Assets/budgeGrub (1).gif)
 
 Credits: BudgetGrubs is a Group Project by
 Ree Britt, Nathan Peek, Fransisco Ortega, Mike Gordillo.
