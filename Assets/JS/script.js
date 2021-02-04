@@ -45,7 +45,7 @@ function liCreate(name) {
     let button = $("<button>");
 
     listItem.html(`${name}`);
-    listItem.addClass("float-left");
+    listItem.addClass("float-left pointer");
 
     button.html("X");
     button.addClass("li-btn float-right");
