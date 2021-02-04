@@ -36,7 +36,7 @@ If the expense is variable, you may delete with the trash icon/x button.
 Once all expenses are entered, user will be left with the remaining balance.
 At this point user will press "get restaurants" button and dinig opinions,
 based on budget will be displayed.
-The Dinig options will Include Name, Location and price range amd pictures.
+The Dinig options will Include Name, Location, price range and pictures.
 
 
 
