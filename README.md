@@ -31,7 +31,7 @@ When I select/make a profile, I will see 2 forms. 1 for monthly income and locat
 When I enter my monthly income and location it will be displayed somewhere on the page as a budget.
 When I enter an expense it will take at least the name of the expense and the amount
 When I submit the expense it will append it to a list of expenses and subtract the sum of all the expenses from your monthly budget.
-When an expense is added to the list, It will have an X button on the side
+When an expense is added to the list, It will have an X button on the side.
 
 
  
