@@ -253,7 +253,6 @@ function initMap() {
 
 $("#map-request").on("click", function () {
     $("#map").removeClass("hidden");
-    //  addMarker({lat: 40.7831, lng: -73.9712}); // Manhattan Coordinates
 })
 
 //For Calculating budget when a new income has been set
