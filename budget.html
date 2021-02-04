@@ -177,18 +177,12 @@
       </a>
 
     </div>
+
+    <button id="map-request" class="btn btn-primary mb-3 hidden">Map Render</button>
     <!-- Placeholder for googlemaps api stuff -->
-    <!-- <div>
-      <div class="mapouter">
-        <div class="gmap_canvas mb-5">
-          <iframe width="150" height="250" id="gmap_canvas"
-            src="https://maps.google.com/maps?q=11530%20griffing%20blvd&t=&z=13&ie=UTF8&iwloc=&output=embed"
-            frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-          <a href="https://www.whatismyip-address.com"></a><br>
-          <a href="https://www.embedgooglemap.net"></a>
-        </div>
-      </div>
-    </div> -->
+    <div id="mapDiv">
+    </div>
+    <div id="map" class="hidden"></div>
 
   </div>
 
@@ -197,6 +191,10 @@
     <h3 class="text-center"><a href="second.html">Contact</a></h3>
 
   </footer>
+
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwt4jc2BU4QM1PVfbFzQ9l-xRk7o8M27Q&callback=initMap">
+    </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

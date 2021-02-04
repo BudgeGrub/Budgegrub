@@ -255,6 +255,14 @@ footer h3 {
     color: rgb(88, 248, 187);;
 }
 
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
 @media only screen and (max-width: 850px) {
     body {
         background-repeat: initial;
@@ -285,3 +293,7 @@ footer h3 {
         font-size: 0.8em;
     }
 }
+#map{
+    height: 400px;
+    width: 100%;
+  }

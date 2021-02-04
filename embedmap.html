@@ -18,22 +18,21 @@
                 <h3 id="Highlight-a-place-or-an-address" data-text="Highlight-a-place-or-an-address">Highlight a place or an address</h3>
                 <div class="card-contents">
                     <div class="autocomplete-location">
-                        <input class="input-text pac-target-input" id="location" placeholder="Enter a location" autocomplete="off">
+                        <input class="input-text pac-target-input" id="location" placeholder="Enter a location" autocomplete="on">
                     </div>
                 </div>
             </div>
             <button id="start-next">Looks good!</button>
             </fieldset>
     <!-- iframe of google map image -->
-        <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCwt4jc2BU4QM1PVfbFzQ9l-xRk7o8M27Q&q=miami+childrens+museum, miami+FL" height="200" width="300" title="Iframe Example"></iframe>
-        <!-- jquery  -->
+        <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCwt4jc2BU4QM1PVfbFzQ9l-xRk7o8M27Q&q=miami+childrens+museum, miami+FL" height="450" width="600" title="Iframe Example"></iframe>
+        <!-- jquery 
+        <iframe width="600" height="450" frameborder="0" style="border:0"
+src="https://www.google.com/maps/embed/v1/undefined?origin=...&q=...&destination=...&center=...&zoom=...&key=..." allowfullscreen></iframe>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script type="text/javascript">
             // This is our API key. Add your own API key between the ""
             var APIKey = "AIzaSyCwt4jc2BU4QM1PVfbFzQ9l-xRk7o8M27Q";
-
-            // Here we are building the URL we need to query the database
-            var queryURL = "https://www.googleapis.com/geolocation/v1/geolocate?key=" + APIKey;
 
             // We then created an AJAX call
             $.ajax({
@@ -45,8 +44,9 @@
                     // Create CODE HERE to log the resulting object
                 console.log(response)
 
-            });
+            }); -->
         </script>
+        
 </body>
 
 </html>
