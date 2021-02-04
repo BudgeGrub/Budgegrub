@@ -32,6 +32,12 @@ When I enter my monthly income and location it will be displayed somewhere on th
 When I enter an expense it will take at least the name of the expense and the amount
 When I submit the expense it will append it to a list of expenses and subtract the sum of all the expenses from your monthly budget.
 When an expense is added to the list, It will have an X button on the side
+If the expense is variable, you may delete with the trash icon/x button.
+Once all expenses are entered, user will be left with the remaining balance.
+At this point user will press "get restaurants" button and dinig opinions,
+based on budget will be displayed.
+The Dinig options will Include Name, Location and price range amd pictures.
+
 
 
  
