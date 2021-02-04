@@ -58,7 +58,7 @@ gitHub: https://github.com/BudgeGrub/Budgegrub
 
 
 ![Screenshot of Application](./Assets/AppScreenShot.png "BudgetGrubs")
-![Gif of BudgeGrub application](./Assets/budgeGrub (1).gif)
+![Gif of BudgeGrub application](./Assets/budgeGrub.gif)
 
 Credits: BudgetGrubs is a Group Project by
 Ree Britt, Nathan Peek, Fransisco Ortega, Mike Gordillo.
